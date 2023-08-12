@@ -17,6 +17,7 @@ import { Specials } from "pages/Specials";
 import { Contact } from "pages/Contact";
 import { Products } from "pages/Products";
 import { Cart } from "pages/Cart";
+import { Landing } from "pages/Landing";
 import {
   buttonColor,
   layoutColor,
@@ -63,21 +64,23 @@ const TopBar = ({ handleClick }) => {
             </div>
           </Button>
           <Button>
-          <Link to={"/cart"}>
-            <ShoppingBasketIcon
-              sx={{
-                color: "gray",
-                alignContent: "bottom",
-                justify: "center",
-                marginBottom: "0.5%",
-              }}
-            /></Link>
+            <Link to={"/cart"}>
+              <ShoppingBasketIcon
+                sx={{
+                  color: "gray",
+                  alignContent: "bottom",
+                  justify: "center",
+                  marginBottom: "0.5%",
+                }}
+              />
+            </Link>
           </Button>
         </Toolbar>
       </AppBar>
     </>
   );
 };
+
 const SideNav = () => {
   return (
     <>

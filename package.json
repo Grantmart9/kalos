@@ -1,8 +1,8 @@
 {
-  "name": "denau",
-  "description": "Lodicon intell-farm dashboard",
-  "author": "Grant Marthinus and Reuben Steenekamp",
-  "homepage": "https://intelli-farm.herokuapp.com/#/denau",
+  "name": "kalos",
+  "description": "product website",
+  "author": "Grant Marthinus",
+  "homepage": "http://kalos.co.za",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
