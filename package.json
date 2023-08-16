@@ -72,7 +72,7 @@
     "yarn": "^1.22.17"
   },
   "engines": {
-    "node": "16.13.2"
+    "node": "20.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
@@ -87,9 +87,9 @@
     "typescript": "^4.4.2"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "build-local": "PUBLIC_URL=./ craco build",
+    "start": "craco --openssl-legacy-provider start",
+    "build": "craco --openssl-legacy-provider build",
+    "build-local": "PUBLIC_URL=./ craco --openssl-legacy-provider build",
     "test": "craco test",
     "eject": "craco eject"
   },
