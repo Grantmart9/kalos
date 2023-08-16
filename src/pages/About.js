@@ -10,7 +10,7 @@ export const About = () => {
       >
         About
       </div>
-      <div>Dr Shuan is a nwata</div>
+      <div classname="text-xl font-bold">Dr Shuan is a nwata</div>
     </div>
   );
 };
