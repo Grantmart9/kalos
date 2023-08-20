@@ -17,7 +17,7 @@ import { Specials } from "pages/Specials";
 import { Contact } from "pages/Contact";
 import { Products } from "pages/Products";
 import { Cart } from "pages/Cart";
-import { Landing } from "pages/Landing";
+import { Login } from "pages/Login";
 import {
   buttonColor,
   layoutColor,
@@ -33,6 +33,10 @@ const menuItems = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
+
+const loginDialog = () => {
+  console.log("login");
+};
 
 const TopBar = ({ handleClick }) => {
   return (
@@ -58,10 +62,12 @@ const TopBar = ({ handleClick }) => {
               KALOS
             </div>
           </Typography>
-          <Button sx={{ marginRight: "2px" }}>
+          <Button onClick={loginDialog} sx={{ marginRight: "2px" }}>
+            <Link to={"/login"}>
             <div style={{ fontFamily: fontType }} className="text-gray-500 ">
               Login
             </div>
+            </Link>
           </Button>
           <Button>
             <Link to={"/cart"}>
@@ -142,6 +148,9 @@ export const Home = () => {
               </Route>
               <Route path="/cart">
                 <Cart />
+              </Route>
+              <Route path="/login">
+                <Login />
               </Route>
             </Switch>
           </div>
