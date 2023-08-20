@@ -125,7 +125,7 @@ export const Products = () => {
             </Button>
           </div>
           <div className="grid grid-rows-5 gap-1">
-            <div className="object center">{item.image}</div>
+            <div className="mx-auto my-auto">{item.image}</div>
             <div className="flex text-sm font-bold align-center justify-center">
               {item.name}
             </div>
