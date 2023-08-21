@@ -88,7 +88,10 @@ const TopBar = ({ handleClick }) => {
   );
 };
 
-const SideNav = () => {
+
+
+const SideNav = ({handleClick}) => {
+ 
   return (
     <>
       <div
@@ -99,6 +102,7 @@ const SideNav = () => {
           <div className="grid grid-rows-4 gap-2 p-2 mt-5">
             {menuItems.map((item) => (
               <Button
+              onClick = {handleClick}
                 size="large"
                 sx={{
                   color: buttonColor,
@@ -132,7 +136,7 @@ export const Home = () => {
         <div className="flex">
           {isMd ? (
             <div>
-              {open ? <SideNav /> : null}
+              {open ? <SideNav handleClick={handleClick}/> : null}
               <div
                 style={{ backgroundColor: layoutColor, fontFamily: fontType }}
                 className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
@@ -161,7 +165,7 @@ export const Home = () => {
             </div>
           ) : (
             <div>
-              {open ? <SideNav /> : null}
+              {open ? <SideNav handleClick={handleClick} /> : null}
               <div
                 style={{ backgroundColor: layoutColor, fontFamily: fontType }}
                 className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
