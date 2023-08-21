@@ -25,6 +25,7 @@ import {
   fontType,
 } from "components/feutures";
 import { useMd } from "media-query";
+import { useMdscreen } from "media-query";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 
 const menuItems = [
@@ -64,9 +65,9 @@ const TopBar = ({ handleClick }) => {
           </Typography>
           <Button onClick={loginDialog} sx={{ marginRight: "2px" }}>
             <Link to={"/login"}>
-            <div style={{ fontFamily: fontType }} className="text-gray-500 ">
-              Login
-            </div>
+              <div style={{ fontFamily: fontType }} className="text-gray-500 ">
+                Login
+              </div>
             </Link>
           </Button>
           <Button>
@@ -118,6 +119,7 @@ const SideNav = () => {
 export const Home = () => {
   const [open, setOpen] = useState(true);
   const isMd = useMd();
+  console.log(isMd);
 
   const handleClick = () => {
     setOpen(!open);
@@ -128,32 +130,65 @@ export const Home = () => {
       <div>
         <TopBar handleClick={handleClick} />
         <div className="flex">
-          {open ? <SideNav /> : null}
-          <div
-            style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-            className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
-          >
-            <Switch>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/products">
-                <Products />
-              </Route>
-              <Route path="/specials">
-                <Specials />
-              </Route>
-              <Route path="/contact">
-                <Contact />
-              </Route>
-              <Route path="/cart">
-                <Cart />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-            </Switch>
-          </div>
+          {isMd ? (
+            <div>
+              {open ? <SideNav /> : null}
+              <div
+                style={{ backgroundColor: layoutColor, fontFamily: fontType }}
+                className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+              >
+                <Switch>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/products">
+                    <Products />
+                  </Route>
+                  <Route path="/specials">
+                    <Specials />
+                  </Route>
+                  <Route path="/contact">
+                    <Contact />
+                  </Route>
+                  <Route path="/cart">
+                    <Cart />
+                  </Route>
+                  <Route path="/login">
+                    <Login />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {open ? <SideNav /> : null}
+              <div
+                style={{ backgroundColor: layoutColor, fontFamily: fontType }}
+                className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+              >
+                <Switch>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/products">
+                    <Products />
+                  </Route>
+                  <Route path="/specials">
+                    <Specials />
+                  </Route>
+                  <Route path="/contact">
+                    <Contact />
+                  </Route>
+                  <Route path="/cart">
+                    <Cart />
+                  </Route>
+                  <Route path="/login">
+                    <Login />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Router>
