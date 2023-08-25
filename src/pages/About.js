@@ -10,7 +10,6 @@ export const About = () => {
       >
         About
       </div>
-      <div classname="text-xl font-bold">Dr Shuan is a nwata</div>
     </div>
   );
 };

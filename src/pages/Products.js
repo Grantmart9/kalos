@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { ProductList } from "components/lists/ProductsList";
 import { FragrancesList } from "components/lists/Fragrances";
 import { MakeupList } from "components/lists/Makeup";
@@ -23,6 +23,14 @@ export const Products = () => {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState();
   const [volume, setVolume] = useState();
+
+  useEffect(() => {
+    axios.get('http://54.91.34.129:5000/get_products', {
+    })
+    .then(function (response) {
+      console.log(response.data);
+    })
+  }, []);
 
   const handleClick = ({ product }) => {
     setItem({
@@ -55,7 +63,7 @@ export const Products = () => {
 
     setOpen(!open);
 
-    axios.post('http://127.0.0.1:5000/add_to_cart', {
+    axios.post('http://54.91.34.129:5000/add_to_cart', {
       product_code: NewItem.product_code,
       volume: NewItem.volume,
       amount: NewItem.amount

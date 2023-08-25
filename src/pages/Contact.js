@@ -1,5 +1,5 @@
 import React from "react";
-import {buttonColor,layoutColor,pageHeading} from "components/feutures";
+import { buttonColor, layoutColor, pageHeading } from "components/feutures";
 
 export const Contact = () => {
   return (
