@@ -1,11 +1,5 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
@@ -24,8 +18,8 @@ import {
   pageHeading,
   fontType,
 } from "components/feutures";
-import { useMd } from "media-query";
-import { useMdscreen } from "media-query";
+import { Size } from "pages/media-query";
+
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 
 const menuItems = [
@@ -35,11 +29,7 @@ const menuItems = [
   { name: "Contact", path: "/contact" },
 ];
 
-const loginDialog = () => {
-  console.log("login");
-};
-
-const TopBar = ({ handleClick }) => {
+const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: layoutColor }}>
@@ -50,7 +40,7 @@ const TopBar = ({ handleClick }) => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={handleClick}
+            onClick={handleBurger}
           >
             <MenuIcon className="text-gray-500" />
           </Button>
@@ -63,14 +53,14 @@ const TopBar = ({ handleClick }) => {
               KALOS
             </div>
           </Typography>
-          <Button onClick={loginDialog} sx={{ marginRight: "2px" }}>
+          <Button onClick={handleLogin} sx={{ marginRight: "2px" }}>
             <Link to={"/login"}>
               <div style={{ fontFamily: fontType }} className="text-gray-500 ">
                 Login
               </div>
             </Link>
           </Button>
-          <Button>
+          <Button onClick={handleCart}>
             <Link to={"/cart"}>
               <ShoppingBasketIcon
                 sx={{
@@ -88,10 +78,7 @@ const TopBar = ({ handleClick }) => {
   );
 };
 
-
-
-const SideNav = ({handleClick}) => {
- 
+const SideNavBig = ({ handleClickLarge }) => {
   return (
     <>
       <div
@@ -102,7 +89,36 @@ const SideNav = ({handleClick}) => {
           <div className="grid grid-rows-4 gap-2 p-2 mt-5">
             {menuItems.map((item) => (
               <Button
-              onClick = {handleClick}
+                onClick={handleClickLarge}
+                size="large"
+                sx={{
+                  color: buttonColor,
+                }}
+              >
+                <Link to={item.path}>
+                  <div clasName="text-md font-bold">{item.name}</div>
+                </Link>
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const SideNavSmall = ({ handleClick }) => {
+  return (
+    <>
+      <div
+        style={{ backgroundColor: layoutColor }}
+        className="rounded shadow-md mt-1 w-screen h-screen"
+      >
+        <div className="flex align-center justify-center">
+          <div className="grid grid-rows-4 gap-2 p-2 mt-5">
+            {menuItems.map((item) => (
+              <Button
+                onClick={handleClick}
                 size="large"
                 sx={{
                   color: buttonColor,
@@ -122,79 +138,97 @@ const SideNav = ({handleClick}) => {
 
 export const Home = () => {
   const [open, setOpen] = useState(true);
-  const isMd = useMd();
-  console.log(isMd);
+  const ScreenSize = Size();
 
-  const handleClick = () => {
+  const handleLogin = () => {
+    setOpen(false);
+  };
+  const handleCart = () => {
+    setOpen(false);
+  };
+  const handleBurger = () => {
     setOpen(!open);
+  };
+  const handleClick = () => {
+    setOpen(false);
   };
 
   return (
-    <Router>
-      <div>
-        <TopBar handleClick={handleClick} />
-        <div className="flex">
-          {isMd ? (
-            <div>
-              {open ? <SideNav handleClick={handleClick}/> : null}
-              <div
-                style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-                className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
-              >
-                <Switch>
-                  <Route path="/about">
-                    <About />
-                  </Route>
-                  <Route path="/products">
-                    <Products />
-                  </Route>
-                  <Route path="/specials">
-                    <Specials />
-                  </Route>
-                  <Route path="/contact">
-                    <Contact />
-                  </Route>
-                  <Route path="/cart">
-                    <Cart />
-                  </Route>
-                  <Route path="/login">
-                    <Login />
-                  </Route>
-                </Switch>
-              </div>
-            </div>
+    <div>
+      {ScreenSize == "SM" || ScreenSize == "XS" ? (
+        <div>
+          <TopBar
+            handleCart={handleCart}
+            handleLogin={handleLogin}
+            handleBurger={handleBurger}
+          />
+          {open ? (
+            <SideNavSmall handleClick={handleClick}/>
           ) : (
-            <div>
-              {open ? <SideNav handleClick={handleClick} /> : null}
-              <div
-                style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-                className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
-              >
-                <Switch>
-                  <Route path="/about">
-                    <About />
-                  </Route>
-                  <Route path="/products">
-                    <Products />
-                  </Route>
-                  <Route path="/specials">
-                    <Specials />
-                  </Route>
-                  <Route path="/contact">
-                    <Contact />
-                  </Route>
-                  <Route path="/cart">
-                    <Cart />
-                  </Route>
-                  <Route path="/login">
-                    <Login />
-                  </Route>
-                </Switch>
-              </div>
+            <div
+              style={{ backgroundColor: layoutColor, fontFamily: fontType }}
+              className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+            >
+              <Switch>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/products">
+                  <Products />
+                </Route>
+                <Route path="/specials">
+                  <Specials />
+                </Route>
+                <Route path="/contact">
+                  <Contact />
+                </Route>
+                <Route path="/cart">
+                  <Cart />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+              </Switch>
             </div>
           )}
         </div>
-      </div>
-    </Router>
+      ) : (
+        <div>
+          <TopBar
+            handleCart={handleCart}
+            handleLogin={handleLogin}
+            handleBurger={handleBurger}
+          />
+          <div className="flex">
+            {open ? <SideNavBig handleClick={handleClick} /> : null}
+            <div
+              style={{ backgroundColor: layoutColor, fontFamily: fontType }}
+              className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+            >
+              <Switch>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/products">
+                  <Products />
+                </Route>
+                <Route path="/specials">
+                  <Specials />
+                </Route>
+                <Route path="/contact">
+                  <Contact />
+                </Route>
+                <Route path="/cart">
+                  <Cart />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+              </Switch>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
