@@ -14,7 +14,6 @@ import {
   pageHeading,
   fontType,
 } from "components/feutures";
-import { Size } from "pages/media-query";
 import { TopBar } from "components/TopBar";
 
 const menuItems = [

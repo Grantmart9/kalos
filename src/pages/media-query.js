@@ -10,8 +10,8 @@ const useXsmscreen = () => useMediaQuery("(max-width:375px)");
 {
   /* Length */
 }
-const useSmscreenlandscape = () => useMediaQuery("(max-height:400px)");
-const useMdscreenlandscape = () => useMediaQuery("(max-height:500px)");
+export const useSmscreenlandscape = () => useMediaQuery("(max-height:400px)");
+export const useMdscreenlandscape = () => useMediaQuery("(max-height:500px)");
 
 export var Size = () => {
   var Screen1 = useXlscreen();
