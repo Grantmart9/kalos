@@ -78,7 +78,101 @@ const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
   );
 };
 
-const SideNavBig = ({ handleClickLarge }) => {
+const ScreenLayoutInner = () => {
+  return (
+    <div
+      style={{ backgroundColor: layoutColor, fontFamily: fontType }}
+      className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+    >
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/products">
+          <Products />
+        </Route>
+        <Route path="/specials">
+          <Specials />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/cart">
+          <Cart />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
+
+const SmallScreenLayout = ({
+  handleCart,
+  handleLogin,
+  handleBurger,
+  handleClick,
+  open,
+}) => {
+  return (
+    <div>
+      <TopBar
+        handleCart={handleCart}
+        handleLogin={handleLogin}
+        handleBurger={handleBurger}
+      />
+      {open ? (
+        <SideNavSmall handleClick={handleClick} />
+      ) : (
+        <ScreenLayoutInner />
+      )}
+    </div>
+  );
+};
+const BigScreenLayout = ({
+  handleCart,
+  handleLogin,
+  handleBurger,
+  handleClick,
+  open,
+}) => {
+  return (
+    <div>
+      <TopBar
+        handleCart={handleCart}
+        handleLogin={handleLogin}
+        handleBurger={handleBurger}
+      />
+      <div className="flex">
+        {open ? <SideNavBig handleClick={handleClick} /> : null}
+        <ScreenLayoutInner />
+      </div>
+    </div>
+  );
+};
+
+const SideNavInner = ({ handleClick }) => {
+  return (
+    <div className="grid grid-rows-4 gap-2 p-2 mt-5">
+      {menuItems.map((item) => (
+        <Button
+          onClick={handleClick}
+          size="large"
+          sx={{
+            color: buttonColor,
+          }}
+        >
+          <Link to={item.path}>
+            <div clasName="text-md font-bold">{item.name}</div>
+          </Link>
+        </Button>
+      ))}
+    </div>
+  );
+};
+
+const SideNavBig = ({ handleClick }) => {
   return (
     <>
       <div
@@ -86,21 +180,7 @@ const SideNavBig = ({ handleClickLarge }) => {
         className="rounded shadow-md mt-1"
       >
         <div className="flex align-center justify-center">
-          <div className="grid grid-rows-4 gap-2 p-2 mt-5">
-            {menuItems.map((item) => (
-              <Button
-                onClick={handleClickLarge}
-                size="large"
-                sx={{
-                  color: buttonColor,
-                }}
-              >
-                <Link to={item.path}>
-                  <div clasName="text-md font-bold">{item.name}</div>
-                </Link>
-              </Button>
-            ))}
-          </div>
+          <SideNavInner handleClick={handleClick} />
         </div>
       </div>
     </>
@@ -115,20 +195,13 @@ const SideNavSmall = ({ handleClick }) => {
         className="rounded shadow-md mt-1 w-screen h-screen"
       >
         <div className="flex align-center justify-center">
-          <div className="grid grid-rows-4 gap-2 p-2 mt-5">
-            {menuItems.map((item) => (
-              <Button
-                onClick={handleClick}
-                size="large"
-                sx={{
-                  color: buttonColor,
-                }}
-              >
-                <Link to={item.path}>
-                  <div clasName="text-md font-bold">{item.name}</div>
-                </Link>
-              </Button>
-            ))}
+          <div
+            style={{ backgroundColor: layoutColor, minWidth: "300px" }}
+            className="rounded shadow-md mt-1"
+          >
+            <div className="flex align-center justify-center">
+              <SideNavInner handleClick={handleClick} />
+            </div>
           </div>
         </div>
       </div>
@@ -156,78 +229,21 @@ export const Home = () => {
   return (
     <div>
       {ScreenSize == "SM" || ScreenSize == "XS" ? (
-        <div>
-          <TopBar
-            handleCart={handleCart}
-            handleLogin={handleLogin}
-            handleBurger={handleBurger}
-          />
-          {open ? (
-            <SideNavSmall handleClick={handleClick}/>
-          ) : (
-            <div
-              style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-              className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
-            >
-              <Switch>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/products">
-                  <Products />
-                </Route>
-                <Route path="/specials">
-                  <Specials />
-                </Route>
-                <Route path="/contact">
-                  <Contact />
-                </Route>
-                <Route path="/cart">
-                  <Cart />
-                </Route>
-                <Route path="/login">
-                  <Login />
-                </Route>
-              </Switch>
-            </div>
-          )}
-        </div>
+        <SmallScreenLayout
+          handleCart={handleCart}
+          handleLogin={handleLogin}
+          handleBurger={handleBurger}
+          handleClick={handleClick}
+          open={open}
+        />
       ) : (
-        <div>
-          <TopBar
-            handleCart={handleCart}
-            handleLogin={handleLogin}
-            handleBurger={handleBurger}
-          />
-          <div className="flex">
-            {open ? <SideNavBig handleClick={handleClick} /> : null}
-            <div
-              style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-              className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
-            >
-              <Switch>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/products">
-                  <Products />
-                </Route>
-                <Route path="/specials">
-                  <Specials />
-                </Route>
-                <Route path="/contact">
-                  <Contact />
-                </Route>
-                <Route path="/cart">
-                  <Cart />
-                </Route>
-                <Route path="/login">
-                  <Login />
-                </Route>
-              </Switch>
-            </div>
-          </div>
-        </div>
+        <BigScreenLayout
+          handleCart={handleCart}
+          handleLogin={handleLogin}
+          handleBurger={handleBurger}
+          handleClick={handleClick}
+          open={open}
+        />
       )}
     </div>
   );

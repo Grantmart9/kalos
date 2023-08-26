@@ -25,7 +25,7 @@ export const Products = () => {
   const [volume, setVolume] = useState();
 
   useEffect(() => {
-    axios.get('http://54.91.34.129:5000/get_products', {
+    axios.get('http://54.152.141.39:5000/get_products', {
     })
     .then(function (response) {
       console.log(response.data);
