@@ -7,7 +7,7 @@ export const Specials = () => {
   return (
     <div>
       <div style={{fontFamily:pageHeading}} className="flex align-center justify-center mb-2 p-2 w-full">
-        Specials
+        Special
       </div>
       <div className="grid grid-cols-4 gap-2">
         {ProductList.map((product) => (
