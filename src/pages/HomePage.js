@@ -39,10 +39,10 @@ const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2,color:buttonColor }}
             onClick={handleBurger}
           >
-            <MenuIcon className="text-gray-500" />
+            <MenuIcon />
           </Button>
           <Typography
             variant="h6"
@@ -53,21 +53,22 @@ const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
               KALOS
             </div>
           </Typography>
-          <Button onClick={handleLogin} sx={{ marginRight: "2px" }}>
+          <Button onClick={handleLogin} sx={{ mr: 2,color:buttonColor  }}>
             <Link to={"/login"}>
-              <div style={{ fontFamily: fontType }} className="text-gray-500 ">
+              <div style={{ fontFamily: fontType }} className="font-serif text-gray-500 ">
                 Login
               </div>
             </Link>
           </Button>
-          <Button onClick={handleCart}>
+          <Button onClick={handleCart} sx={{ mr: 2  }}>
             <Link to={"/cart"}>
               <ShoppingBasketIcon
                 sx={{
                   color: "gray",
                   alignContent: "bottom",
                   justify: "center",
-                  marginBottom: "0.5%",
+                  align: "center",
+                  color:buttonColor
                 }}
               />
             </Link>

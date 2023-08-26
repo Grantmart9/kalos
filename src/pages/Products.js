@@ -6,7 +6,6 @@ import { SkincareList } from "components/lists/Skincare";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import {
@@ -133,7 +132,7 @@ export const Products = () => {
             </Button>
           </div>
           <div className="grid grid-rows-5 gap-1">
-            <div className="mx-auto my-auto">{item.image}</div>
+            <div className="transition ease-in duration-3000 mx-auto my-auto">{item.image}</div>
             <div className="flex text-sm font-bold align-center justify-center">
               {item.name}
             </div>
