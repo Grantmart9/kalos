@@ -83,7 +83,7 @@ const ScreenLayoutInner = () => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-      className="rounded shadow-md h-fit w-screen p-2 mt-1 ml-1"
+      className="rounded shadow-md h-screen w-screen p-2 mt-1 ml-1"
     >
       <Switch>
         <Route path="/about">
@@ -223,8 +223,11 @@ export const Home = () => {
   const handleBurger = () => {
     setOpen(!open);
   };
-  const handleClick = () => {
-    setOpen(false);
+  const handleClickLarge = () => {
+    setOpen(true);
+  };
+  const handleClickSmall = () => {
+    setOpen(!open);
   };
 
   return (
@@ -234,7 +237,7 @@ export const Home = () => {
           handleCart={handleCart}
           handleLogin={handleLogin}
           handleBurger={handleBurger}
-          handleClick={handleClick}
+          handleClick={handleClickSmall}
           open={open}
         />
       ) : (
@@ -242,7 +245,7 @@ export const Home = () => {
           handleCart={handleCart}
           handleLogin={handleLogin}
           handleBurger={handleBurger}
-          handleClick={handleClick}
+          handleClick={handleClickLarge}
           open={open}
         />
       )}

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ProductList } from "components/lists/ProductsList";
 import { FragrancesList } from "components/lists/Fragrances";
 import { MakeupList } from "components/lists/Makeup";
@@ -24,11 +24,11 @@ export const Products = () => {
   const [volume, setVolume] = useState();
 
   useEffect(() => {
-    axios.get('http://54.152.141.39:5000/get_products', {
-    })
-    .then(function (response) {
-      console.log(response.data);
-    })
+    axios
+      .get("http://54.152.141.39:5000/get_products", {})
+      .then(function (response) {
+        console.log(response.data);
+      });
   }, []);
 
   const handleClick = ({ product }) => {
@@ -62,44 +62,45 @@ export const Products = () => {
 
     setOpen(!open);
 
-    axios.post('http://54.91.34.129:5000/add_to_cart', {
-      product_code: NewItem.product_code,
-      volume: NewItem.volume,
-      amount: NewItem.amount
-    })
+    axios
+      .post("http://54.91.34.129:5000/add_to_cart", {
+        product_code: NewItem.product_code,
+        volume: NewItem.volume,
+        amount: NewItem.amount,
+      })
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
-    console.log(NewItem.product_code)
+    console.log(NewItem.product_code);
   };
 
   return (
     <div>
       <div
-        style={{ fontFamily: pageHeading }}
-        className="flex align-center justify-center mb-2 p-2 w-full"
+        style={{ color: pageHeading }}
+        className="text-xl flex align-center justify-center mb-2 p-2 w-full"
       >
         Products
       </div>
       <div className="grid grid-cols-3 gap-2">
         <Button
-          onClick={() => setMenu(FragrancesList)}
-          sx={{ backgroundColor: layoutColor, color: "black" }}
+          onClick={setMenu(FragrancesList)}
+          sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>fragrances</div>
         </Button>
         <Button
-          onClick={() => setMenu(SkincareList)}
-          sx={{ backgroundColor: layoutColor, color: "black" }}
+          onClick={setMenu(SkincareList)}
+          sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>skincare</div>
         </Button>
         <Button
-          onClick={() => setMenu(MakeupList)}
-          sx={{ backgroundColor: layoutColor, color: "black" }}
+          onClick={setMenu(MakeupList)}
+          sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>makeup</div>
         </Button>
@@ -132,7 +133,9 @@ export const Products = () => {
             </Button>
           </div>
           <div className="grid grid-rows-5 gap-1">
-            <div className="transition ease-in duration-3000 mx-auto my-auto">{item.image}</div>
+            <div className="transition ease-in duration-3000 mx-auto my-auto">
+              {item.image}
+            </div>
             <div className="flex text-sm font-bold align-center justify-center">
               {item.name}
             </div>
