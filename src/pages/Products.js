@@ -87,19 +87,19 @@ export const Products = () => {
       </div>
       <div className="grid grid-cols-3 gap-2">
         <Button
-          onClick={setMenu(FragrancesList)}
+
           sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>fragrances</div>
         </Button>
         <Button
-          onClick={setMenu(SkincareList)}
+         
           sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>skincare</div>
         </Button>
         <Button
-          onClick={setMenu(MakeupList)}
+        
           sx={{ backgroundColor: layoutColor, color: buttonColor }}
         >
           <div style={{ fontFamily: fontType }}>makeup</div>
