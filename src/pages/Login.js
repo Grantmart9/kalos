@@ -17,11 +17,11 @@ export const Login = () => {
       style={{ color: pageHeading, marginTop: "10%" }}
       className="flex justify-center"
     >
-      <div className="flex rounded shadow-md p-5">
+      <div className="flex rounded shadow-md p-20">
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, maxWidth: "22ch" },
+            "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
           }}
           noValidate
           autoComplete="on"
