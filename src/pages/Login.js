@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -10,9 +10,41 @@ import {
   fontType,
 } from "components/feutures";
 import { Size } from "pages/media-query";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const axios = require("axios");
 
 export const Login = () => {
+  const [user_name, setUser_name] = useState("");
+  const [password, setPassword] = useState("");
   const size = Size();
+
+  const handleUserNameInput = (e) => {
+    setUser_name(e.target.value);
+  };
+  const handleUserPasswordInput = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handlePost = () => {
+    
+    axios
+      .post("http://54.152.141.39:5000/auth", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        user_details: {
+          username: user_name,
+          password: password,
+        },
+      })
+      .then(function (response) {
+        cookies.set('Token', response.data.JWT, { path: '/' });
+        console.log(cookies.get('Token')); 
+      })
+      .catch(function (error) {
+      });
+  };
+
   return (
     <div
       style={{ color: pageHeading, marginTop: "10%" }}
@@ -30,6 +62,7 @@ export const Login = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
+              onChange={handleUserNameInput}
               sucess
               id="outlined-error-helper-text"
               label="Username"
@@ -39,6 +72,7 @@ export const Login = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
+              onChange={handleUserPasswordInput}
               sucess
               id="outlined-error-helper-text"
               label="Password"
@@ -50,6 +84,7 @@ export const Login = () => {
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
+                onClick={handlePost}
                 size="small"
               >
                 Login
@@ -71,6 +106,7 @@ export const Login = () => {
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
                 size="small"
+                onClick={handlePost}
               >
                 Login
               </Button>
