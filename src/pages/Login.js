@@ -10,13 +10,16 @@ import {
   fontType,
 } from "components/feutures";
 import { Size } from "pages/media-query";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
+import Loading from "images/Loading.gif";
 const cookies = new Cookies();
 const axios = require("axios");
 
 export const Login = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   const size = Size();
 
   const handleUserNameInput = (e) => {
@@ -27,7 +30,7 @@ export const Login = () => {
   };
 
   const handlePost = () => {
-    
+    setLoading(true);
     axios
       .post("http://54.152.141.39:5000/auth", {
         method: "GET",
@@ -38,12 +41,33 @@ export const Login = () => {
         },
       })
       .then(function (response) {
-        cookies.set('Token', response.data.JWT, { path: '/' });
-        console.log(cookies.get('Token')); 
+        cookies.set("Token", response.data.JWT, { path: "/" });
+        console.log(cookies.get("Token"));
+        setLoading(false);
       })
       .catch(function (error) {
+        setError("Request Error !!!");
+        setLoading(false);
       });
   };
+  console.log(loading);
+
+  if (loading) {
+    return (
+      <div
+        style={{ color: pageHeading,marginTop:"32%" }}
+        className="flex justify-center align-center"
+      >
+        <div className="grid grid-rows-2">
+          <img src={Loading} />
+          Loging in as: {user_name}
+        </div>
+      </div>
+    );
+  }
+  if (error) {
+    <div>error</div>;
+  }
 
   return (
     <div
