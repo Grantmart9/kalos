@@ -60,7 +60,9 @@ export const Login = () => {
                 variant="outlined"
                 size="small"
               >
-                Register
+                <Link to={"/register"}>
+                  <div clasName="text-md font-bold">Register</div>
+                </Link>
               </Button>
             </div>
           ) : (
