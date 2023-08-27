@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {
@@ -17,7 +18,7 @@ export const Login = () => {
       style={{ color: pageHeading, marginTop: "10%" }}
       className="flex justify-center"
     >
-      <div className="flex rounded shadow-md p-20">
+      <div className="flex rounded shadow-md p-10">
         <Box
           component="form"
           sx={{
@@ -76,7 +77,9 @@ export const Login = () => {
                 variant="outlined"
                 size="small"
               >
-                Register
+                <Link to={"/register"}>
+                  <div clasName="text-md font-bold">Register</div>
+                </Link>
               </Button>
             </div>
           )}

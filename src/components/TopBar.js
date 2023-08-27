@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   buttonColor,
@@ -11,8 +12,6 @@ import {
   pageHeading,
   fontType,
 } from "components/feutures";
-
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 
 export const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
     return (

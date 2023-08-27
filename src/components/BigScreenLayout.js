@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { About } from "pages/About";
-import { Specials } from "pages/Specials";
 import { Contact } from "pages/Contact";
 import { Products } from "pages/Products";
 import { Cart } from "pages/Cart";
 import { Login } from "pages/Login";
+import { Register } from "pages/Register";
 import {
   buttonColor,
   layoutColor,
@@ -16,9 +16,9 @@ import {
 } from "components/feutures";
 import { TopBar } from "components/TopBar";
 
+/*This needs to be */
 const menuItems = [
     { name: "Products", path: "/products" },
-    { name: "Specials", path: "/specials" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -73,9 +73,6 @@ const menuItems = [
           <Route path="/products">
             <Products />
           </Route>
-          <Route path="/specials">
-            <Specials />
-          </Route>
           <Route path="/contact">
             <Contact />
           </Route>
@@ -84,6 +81,9 @@ const menuItems = [
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>
