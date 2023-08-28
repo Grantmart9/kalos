@@ -15,19 +15,31 @@ import {
   fontType,
 } from "components/feutures";
 import axios from "axios";
+import Loading from "images/Loading.gif";
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
   const [item, setItem] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState();
   const [volume, setVolume] = useState();
 
+  console.log(data);
   useEffect(() => {
+    setLoading(true);
     axios
       .get("http://54.152.141.39:5000/get_products", {})
       .then(function (response) {
-        console.log(response.data);
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        setError("Request Error !!!");
+        setLoading(false);
+        setError(error.message);
       });
   }, []);
 
@@ -42,6 +54,21 @@ export const Products = () => {
 
     setOpen(!open);
   };
+
+  if (loading) {
+    return (
+      <div
+        style={{ color: pageHeading }}
+        className="flex justify-center align-center"
+      >
+        <div className="grid grid-rows-2 gap-6">
+          <div className="flex align-center my-20">
+            <img height={80} width={80} src={Loading} />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleAmount = (event) => {
     setAmount(event.target.value);
@@ -86,22 +113,13 @@ export const Products = () => {
         Products
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <Button
-
-          sx={{ backgroundColor: layoutColor, color: buttonColor }}
-        >
+        <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
           <div style={{ fontFamily: fontType }}>fragrances</div>
         </Button>
-        <Button
-         
-          sx={{ backgroundColor: layoutColor, color: buttonColor }}
-        >
+        <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
           <div style={{ fontFamily: fontType }}>skincare</div>
         </Button>
-        <Button
-        
-          sx={{ backgroundColor: layoutColor, color: buttonColor }}
-        >
+        <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
           <div style={{ fontFamily: fontType }}>makeup</div>
         </Button>
       </div>

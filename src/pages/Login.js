@@ -12,8 +12,6 @@ import {
 import { Size } from "pages/media-query";
 import Cookies from "universal-cookie";
 import Loading from "images/Loading.gif";
-import Alert from "@mui/material/Alert";
-import { Products } from "./Products";
 const cookies = new Cookies();
 const axios = require("axios");
 
