@@ -12,6 +12,8 @@ import {
 import { Size } from "pages/media-query";
 import Cookies from "universal-cookie";
 import Loading from "images/Loading.gif";
+import Alert from "@mui/material/Alert";
+import { Products } from "./Products";
 const cookies = new Cookies();
 const axios = require("axios");
 
@@ -19,6 +21,7 @@ export const Login = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [JWT, setJWT] = useState(null);
   const [error, setError] = useState();
   const size = Size();
 
@@ -42,7 +45,7 @@ export const Login = () => {
       })
       .then(function (response) {
         cookies.set("Token", response.data.JWT, { path: "/" });
-        console.log(cookies.get("Token"));
+        setJWT(response.data.JWT);
         setLoading(false);
       })
       .catch(function (error) {
@@ -55,12 +58,14 @@ export const Login = () => {
   if (loading) {
     return (
       <div
-        style={{ color: pageHeading,marginTop:"32%" }}
+        style={{ color: pageHeading }}
         className="flex justify-center align-center"
       >
-        <div className="grid grid-rows-2">
-          <img src={Loading} />
-          Loging in as: {user_name}
+        <div className="grid grid-rows-2 gap-6">
+          <div className="flex align-center justify-center">
+            <img src={Loading} />
+          </div>
+          <div>Loging in as: {user_name}</div>
         </div>
       </div>
     );
@@ -111,7 +116,9 @@ export const Login = () => {
                 onClick={handlePost}
                 size="small"
               >
-                Login
+                <Link activeClassName="is-active" to={"/products"}>
+                  <div clasName="text-md font-bold">Login</div>
+                </Link>
               </Button>
 
               <Button
@@ -132,7 +139,9 @@ export const Login = () => {
                 size="small"
                 onClick={handlePost}
               >
-                Login
+                <Link activeClassName="is-active" to={"/products"}>
+                  <div clasName="text-md font-bold">Login</div>
+                </Link>
               </Button>
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
