@@ -53,21 +53,6 @@ export const Login = () => {
   };
   console.log(loading);
 
-  if (loading) {
-    return (
-      <div
-        style={{ color: pageHeading }}
-        className="flex justify-center align-center"
-      >
-        <div className="grid grid-rows-2 gap-6">
-          <div className="flex align-center justify-center">
-            <img src={Loading} />
-          </div>
-          <div>Loging in as: {user_name}</div>
-        </div>
-      </div>
-    );
-  }
   if (error) {
     <div>error</div>;
   }
@@ -93,7 +78,6 @@ export const Login = () => {
               sucess
               id="outlined-error-helper-text"
               label="Username"
-              helperText="Incorrect entry."
             />
           </div>
           <div>
@@ -103,7 +87,6 @@ export const Login = () => {
               sucess
               id="outlined-error-helper-text"
               label="Password"
-              helperText="Incorrect entry."
             />
           </div>
           {size == "MD" || size == "SM" || size == "XS" ? (
