@@ -47,7 +47,7 @@ const SideNavInner = ({ handleClick }) => {
       <>
         <div
           style={{ backgroundColor: layoutColor, minWidth: "300px" }}
-          className="rounded shadow-md mt-1"
+          className="rounded shadow-md mt-1 h-screen"
         >
           <div className="flex align-center justify-center">
             <SideNavInner handleClick={handleClick} />
