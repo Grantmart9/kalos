@@ -93,14 +93,7 @@ export const Products = () => {
     <div>
       {!loading ? (
         <div>
-          {" "}
-          <div
-            style={{ color: pageHeading }}
-            className="text-xl flex align-center justify-center mb-2 p-2 w-full"
-          >
-            Products
-          </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 mb-4 shadow-md">
             <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
               <div style={{ fontFamily: fontType }}>fragrances</div>
             </Button>
