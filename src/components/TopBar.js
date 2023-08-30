@@ -12,53 +12,57 @@ import {
   pageHeading,
   fontType,
 } from "components/feutures";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 export const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
-    return (
-      <>
-        <AppBar position="static" sx={{ backgroundColor: layoutColor }}>
-          <Toolbar>
-            <Button
-              size="small"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2,color:buttonColor }}
-              onClick={handleBurger}
-            >
-              <MenuIcon />
-            </Button>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ color: pageHeading, flexGrow: 1, fontFamily: fontType }}
-            >
-              <div className="flex text-md align-center justify-center">
-                KALOS
+  return (
+    <>
+      <AppBar position="static" sx={{ backgroundColor: layoutColor }}>
+        <Toolbar>
+          <Button
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2, color: buttonColor }}
+            onClick={handleBurger}
+          >
+            <MenuIcon />
+          </Button>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ color: pageHeading, flexGrow: 1, fontFamily: fontType }}
+          >
+            <div className="flex text-md align-center justify-center">
+              KALOS
+            </div>
+          </Typography>
+          <Button onClick={handleLogin} sx={{ mr: 1, color: buttonColor }}>
+            <Link to={"/login"}>
+              <div
+                style={{ fontFamily: fontType }}
+                className="font-serif text-gray-500 "
+              >
+                Login
               </div>
-            </Typography>
-            <Button onClick={handleLogin} sx={{ mr: 2,color:buttonColor  }}>
-              <Link to={"/login"}>
-                <div style={{ fontFamily: fontType }} className="font-serif text-gray-500 ">
-                  Login
-                </div>
-              </Link>
-            </Button>
-            <Button onClick={handleCart} sx={{ mr: 2  }}>
-              <Link to={"/cart"}>
-                <ShoppingBasketIcon
-                  sx={{
-                    color: "gray",
-                    alignContent: "bottom",
-                    justify: "center",
-                    align: "center",
-                    color:buttonColor
-                  }}
-                />
-              </Link>
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </>
-    );
-  };
+            </Link>
+          </Button>
+          <Button onClick={handleCart} sx={{ mr: 1 }}>
+            <Link to={"/cart"}>
+              <ShoppingBasketIcon
+                sx={{
+                  color: "gray",
+                  alignContent: "bottom",
+                  justify: "center",
+                  align: "center",
+                  color: buttonColor,
+                }}
+              />
+            </Link>
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </>
+  );
+};
