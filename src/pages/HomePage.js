@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Size } from "pages/media-query";
 import { SmallScreenLayout } from "components/SmallScreenLayout";
 import { BigScreenLayout } from "components/BigScreenLayout";
+import  {AwsRum}  from "aws-rum-web";
 
 export const Home = () => {
   const [open, setOpen] = useState(true);
@@ -24,6 +25,8 @@ export const Home = () => {
   const handleClickSmall = () => {
     setOpen(!open);
   };
+
+  
 
   return (
     <div>
