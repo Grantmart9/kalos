@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Size } from "pages/media-query";
 import { SmallScreenLayout } from "components/SmallScreenLayout";
 import { BigScreenLayout } from "components/BigScreenLayout";
-import  {AwsRum}  from "aws-rum-web";
 
 export const Home = () => {
   const [open, setOpen] = useState(true);
@@ -26,7 +25,10 @@ export const Home = () => {
     setOpen(!open);
   };
 
-  
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div>

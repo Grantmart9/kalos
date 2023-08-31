@@ -11,7 +11,10 @@ import {
 } from "components/feutures";
 import { Size } from "pages/media-query";
 import Cookies from "universal-cookie";
-import Loading from "images/Loading.gif";
+import { AwsRum } from 'aws-rum-web';
+let awsRum = null;
+
+
 const cookies = new Cookies();
 const axios = require("axios");
 
@@ -19,6 +22,7 @@ export const Login = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [buttonCount,setButtonCount] = useState();
   const [JWT, setJWT] = useState(null);
   const [error, setError] = useState();
   const size = Size();
@@ -32,6 +36,32 @@ export const Login = () => {
 
   const handlePost = () => {
     setLoading(true);
+    setButtonCount(buttonCount+1)
+    try {
+      const config = {
+        sessionSampleRate: 1,
+        guestRoleArn: "arn:aws:iam::941362998624:role/RUM-Monitor-us-east-1-941362998624-8009205343961-Unauth",
+        identityPoolId: "us-east-1:000b7a40-95a7-49bd-818a-1e88f2d128d0",
+        endpoint: "https://dataplane.rum.us-east-1.amazonaws.com",
+        telemetries: ["performance","errors","http"],
+        allowCookies: true,
+        enableXRay: false
+      };
+    
+      const APPLICATION_ID = 'c92a4541-c048-41b5-b1af-6d246dd4244d';
+      const APPLICATION_VERSION = '1.0.0';
+      const APPLICATION_REGION = 'us-east-1';
+    
+      const awsRum = new AwsRum(
+        APPLICATION_ID,
+        APPLICATION_VERSION,
+        APPLICATION_REGION,
+        
+        config
+      );
+    } catch (error) {
+      // Ignore errors thrown during CloudWatch RUM web client initialization
+    }
     axios
       .post("http://54.152.141.39:5000/auth", {
         method: "GET",

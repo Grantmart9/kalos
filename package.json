@@ -37,6 +37,8 @@
     "@themesberg/react-bootstrap": "^1.4.1",
     "apexcharts": "^3.28.3",
     "autoprefixer": "^9",
+    "aws-rum-react": "^1.0.5",
+    "aws-rum-web": "^1.14.0",
     "axios": "^0.21.1",
     "axios-hooks": "^2.6.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -110,16 +112,9 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
