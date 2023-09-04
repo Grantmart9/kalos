@@ -104,8 +104,8 @@ export const BigScreenLayout = ({
           handleLogin={handleLogin}
           handleBurger={handleBurger}
         />
-        <div className="flex">
-          {open ? <SideNavBig handleClick={handleClick} /> : null}
+        <div className="flex" style={{marginTop:"5rem"}}>
+          {open ? <SideNavBig  handleClick={handleClick} /> : null}
           <ScreenLayoutInner />
         </div>
       </div>

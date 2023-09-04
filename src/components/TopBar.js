@@ -17,7 +17,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 export const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: layoutColor }}>
+      <AppBar position="fixed" sx={{ backgroundColor: layoutColor }}>
         <Toolbar>
           <Button
             size="small"
