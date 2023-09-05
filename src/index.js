@@ -17,7 +17,7 @@ import { BrowserRouter } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "react-datetime/css/react-datetime.css";
 import "tailwind.css";
-import { Home } from "pages/HomePage";
+import { Home } from "UserPages/HomePage";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 
 const theme = createTheme({});

@@ -9,7 +9,7 @@ import {
   pageHeading,
   fontType,
 } from "components/feutures";
-import { Size } from "pages/media-query";
+import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import Loading from "images/Loading.gif";
 const cookies = new Cookies();

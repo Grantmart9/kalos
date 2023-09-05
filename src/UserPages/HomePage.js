@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { useState } from "react";
-import { Size } from "pages/media-query";
+import { Size } from "media-query";
 import { SmallScreenLayout } from "components/SmallScreenLayout";
 import { BigScreenLayout } from "components/BigScreenLayout";
 

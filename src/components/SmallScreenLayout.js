@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import { About } from "pages/About";
-import { Contact } from "pages/Contact";
-import { Products } from "pages/Products";
-import { Cart } from "pages/Cart";
-import { Login } from "pages/Login";
-import { Register } from "pages/Register";
+import { About } from "UserPages/About";
+import { Contact } from "UserPages/Contact";
+import { Products } from "UserPages/Products";
+import { Cart } from "SecuredPages/Cart";
+import { Login } from "SecuredPages/Login";
+import { Register } from "UserPages/Register";
 import {
   buttonColor,
   layoutColor,
