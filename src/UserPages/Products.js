@@ -31,7 +31,7 @@ export const Products = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://54.152.141.39:5000/get_products", {})
+      .get("http://18.232.111.16/get_products", {})
       .then(function (response) {
         setData(response.data);
         setLoading(false);
@@ -75,7 +75,7 @@ export const Products = () => {
     setOpen(!open);
 
     axios
-      .post("http://54.91.34.129:5000/add_to_cart", {
+      .post("http://18.232.111.16/add_to_cart", {
         product_code: NewItem.product_code,
         volume: NewItem.volume,
         amount: NewItem.amount,
