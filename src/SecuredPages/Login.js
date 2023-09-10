@@ -11,6 +11,7 @@ import {
 } from "components/feutures";
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
+const API_IP = "18.232.111.16:5000"
 
 const cookies = new Cookies();
 const axios = require("axios");
@@ -37,7 +38,7 @@ export const Login = () => {
     setLoading(true);
     setButtonCount(buttonCount+1)
     axios
-      .post("http://54.152.141.39:5000/auth", {
+      .post("http://"+API_IP+"/auth", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         user_details: {

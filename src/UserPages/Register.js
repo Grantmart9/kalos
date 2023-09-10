@@ -15,13 +15,14 @@ import Loading from "images/Loading.gif";
 const cookies = new Cookies();
 const axios = require("axios");
 
+const API_IP = "18.232.111.16:5000"
+
 export const Register = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword,setConfirmPassword] = useState("");
   const [email,setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [JWT, setJWT] = useState(null);
   const [error, setError] = useState();
   const size = Size();
 
@@ -41,7 +42,7 @@ export const Register = () => {
   const handlePost = () => {
     setLoading(true);
     axios
-      .post("http://18.232.111.16:5000/register", {
+      .post("http://"+API_IP+"/put_users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         user_details: {

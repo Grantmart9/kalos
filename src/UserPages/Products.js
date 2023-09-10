@@ -17,7 +17,7 @@ import {
 import axios from "axios";
 import Loading from "images/Loading.gif";
 
-const API_IP = "18.232.111.16"
+const API_IP = "18.232.111.16:5000"
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
@@ -77,7 +77,7 @@ export const Products = () => {
     setOpen(!open);
 
     axios
-      .post("http://18.232.111.16/add_to_cart", {
+      .post("http://"+API_IP+"/add_to_cart", {
         product_code: NewItem.product_code,
         volume: NewItem.volume,
         amount: NewItem.amount,
