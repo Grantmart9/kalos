@@ -17,6 +17,8 @@ import {
 import axios from "axios";
 import Loading from "images/Loading.gif";
 
+const API_IP = "18.232.111.16"
+
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
   const [item, setItem] = useState([]);
@@ -31,7 +33,7 @@ export const Products = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://18.232.111.16/get_products", {})
+      .get("http://"+API_IP+"/get_products", {})
       .then(function (response) {
         setData(response.data);
         setLoading(false);

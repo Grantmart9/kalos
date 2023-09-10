@@ -18,6 +18,8 @@ const axios = require("axios");
 export const Register = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword,setConfirmPassword] = useState("");
+  const [email,setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [JWT, setJWT] = useState(null);
   const [error, setError] = useState();
@@ -26,29 +28,32 @@ export const Register = () => {
   const handleUserNameInput = (e) => {
     setUser_name(e.target.value);
   };
-  const handleUserPasswordInput = (e) => {
+  const handlePasswordInput = (e) => {
     setPassword(e.target.value);
+  };
+  const handleUserConfirmPasswordInput = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+  const handleUserEmailInput = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePost = () => {
     setLoading(true);
     axios
-      .post("http://54.152.141.39:5000/auth", {
-        method: "GET",
+      .post("http://18.232.111.16:5000/register", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         user_details: {
           username: user_name,
           password: password,
+          email:email,
+
         },
       })
       .then(function (response) {
-        cookies.set("Token", response.data.JWT, { path: "/" });
-        setJWT(response.data.JWT);
-        setLoading(false);
       })
       .catch(function (error) {
-        setError("Request Error !!!");
-        setLoading(false);
       });
   };
   console.log(loading);
@@ -88,7 +93,7 @@ export const Register = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
-              onChange={handleUserNameInput}
+              onChange={handleUserEmailInput}
               sucess
               id="outlined-error-helper-text"
               label="email"
@@ -97,6 +102,7 @@ export const Register = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
+              onChange={handleUserNameInput}
               sucess
               id="outlined-error-helper-text"
               label="Username"
@@ -105,6 +111,7 @@ export const Register = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
+              onChange={handlePasswordInput}
               sucess
               id="outlined-error-helper-text"
               label="Password"
@@ -113,6 +120,7 @@ export const Register = () => {
           <div>
             <TextField
               sx={{ color: buttonColor }}
+              onChange={handleUserConfirmPasswordInput}
               sucess
               id="outlined-error-helper-text"
               label="Confirm Password"
@@ -122,6 +130,7 @@ export const Register = () => {
             <Button
               sx={{ color: buttonColor, mt: 3, mx: "auto" }}
               variant="outlined"
+              onClick={handlePost}
               size="small"
             >
               <Link to={"/products"}>

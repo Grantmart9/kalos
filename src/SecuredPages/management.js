@@ -10,7 +10,7 @@ export const Management = () => {
       >
         Management
       </div>
-      <div className="text-center" style={{color:buttonColor}}>
+      <div className="text-center" style={{ color: buttonColor }}>
         In Ancient Greek, καλός (kalós) meant ‘beautiful’, and κάλλος meant
         ‘beauty’. That is where such English words as ‘calligraphy’ or
         ‘callisthenics’ come from. In modern Greek, it means ‘good’.
