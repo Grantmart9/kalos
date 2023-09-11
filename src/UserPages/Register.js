@@ -8,20 +8,120 @@ import {
   layoutColor,
   pageHeading,
   fontType,
-} from "components/feutures";
+} from "components/DisplaySettings/feutures";
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import Loading from "images/Loading.gif";
+import { API_IP } from "components/API/API";
 const cookies = new Cookies();
 const axios = require("axios");
 
-const API_IP = "18.232.111.16:5000"
+const OtherDetails = ({
+  handleUserNameInput,
+  handlePasswordInput,
+  handleUserConfirmPasswordInput,
+  handleUserEmailInput,
+}) => {
+  return (
+    <div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserNameInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Username"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handlePasswordInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Password"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserConfirmPasswordInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Confirm Password"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserEmailInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="email"
+          size="small"
+        />
+      </div>
+    </div>
+  );
+};
+
+const PersonalDetails = ({
+  handleUserFirstnameInput,
+  handleUserAddressInput,
+  handleCellInput,
+  handleUserLastnameInput,
+}) => {
+  return (
+    <div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserFirstnameInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Firstname"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserLastnameInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="LastName"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleUserAddressInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Address"
+        />
+      </div>
+      <div>
+        <TextField
+          sx={{ color: buttonColor }}
+          onChange={handleCellInput}
+          sucess
+          id="outlined-error-helper-text"
+          label="Cell"
+        />
+      </div>
+    </div>
+  );
+};
 
 export const Register = () => {
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpassword,setConfirmPassword] = useState("");
-  const [email,setEmail] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [cell, setCell] = useState("");
+  const [address, setAddress] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const size = Size();
@@ -38,24 +138,38 @@ export const Register = () => {
   const handleUserEmailInput = (e) => {
     setEmail(e.target.value);
   };
+  const handleUserFirstnameInput = (e) => {
+    setFirstName(e.target.value);
+  };
+  const handleUserAddressInput = (e) => {
+    setAddress(e.target.value);
+  };
+  const handleCellInput = (e) => {
+    setCell(e.target.value);
+  };
+  const handleUserLastnameInput = (e) => {
+    setLastName(e.target.value);
+  };
 
   const handlePost = () => {
     setLoading(true);
     axios
-      .post("http://"+API_IP+"/put_users", {
+      .post("http://" + API_IP + "/put_users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         user_details: {
           username: user_name,
           password: password,
-          email:email,
+          email: email,
+          cell:cell,
+          address:address,
+          lastName:lastName,
+          firstName:firstName,
 
         },
       })
-      .then(function (response) {
-      })
-      .catch(function (error) {
-      });
+      .then(function (response) {})
+      .catch(function (error) {});
   };
   console.log(loading);
 
@@ -91,48 +205,24 @@ export const Register = () => {
           noValidate
           autoComplete="on"
         >
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handleUserEmailInput}
-              sucess
-              id="outlined-error-helper-text"
-              label="email"
-            />
-          </div>
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handleUserNameInput}
-              sucess
-              id="outlined-error-helper-text"
-              label="Username"
-            />
-          </div>
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handlePasswordInput}
-              sucess
-              id="outlined-error-helper-text"
-              label="Password"
-            />
-          </div>
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handleUserConfirmPasswordInput}
-              sucess
-              id="outlined-error-helper-text"
-              label="Confirm Password"
-            />
-          </div>
+          <OtherDetails
+            handleUserNameInput={handleUserNameInput}
+            handlePasswordInput={handlePasswordInput}
+            handleUserConfirmPasswordInput={handleUserConfirmPasswordInput}
+            handleUserEmailInput={handleUserEmailInput}
+          />
+          <PersonalDetails
+            handleUserFirstnameInput={handleUserFirstnameInput}
+            handleUserAddressInput={handleUserAddressInput}
+            handleCellInput={handleCellInput}
+            handleUserLastnameInput={handleUserLastnameInput}
+          />
           <div className="flex align-center justify-center">
             <Button
               sx={{ color: buttonColor, mt: 3, mx: "auto" }}
               variant="outlined"
               onClick={handlePost}
-              size="small"
+              size="=large"
             >
               <Link to={"/products"}>
                 <div clasName="text-md font-bold">Register</div>

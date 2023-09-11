@@ -6,20 +6,35 @@ import { About } from "UserPages/About";
 import { Contact } from "UserPages/Contact";
 import { Products } from "UserPages/Products";
 import { Cart } from "SecuredPages/Cart";
-import { Login } from "SecuredPages/Login";
+import { Login } from "UserPages/Login";
 import { Register } from "UserPages/Register";
 import {
   buttonColor,
   layoutColor,
-  pageHeading,
   fontType,
-} from "components/feutures";
-import { TopBar } from "components/TopBar";
+} from "components/DisplaySettings/feutures";
+import { TopBar } from "components/DisplaySettings/TopBar";
 
+/*This needs to be */
 const menuItems = [
   { name: "Products", path: "/products" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
+];
+const RegisteredMenuItems = [
+  { name: "Products", path: "/products" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+  { name: "Orders", path: "/orders" },
+  { name: "User settings", path: "/usersettings" },
+];
+
+const ManagerMenueItems = [
+  { name: "Products", path: "/products" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+  { name: "Orders", path: "/orders" },
+  { name: "User settings", path: "/usersettings" },
 ];
 
 const SideNavInner = ({ handleClick }) => {
@@ -42,12 +57,12 @@ const SideNavInner = ({ handleClick }) => {
   );
 };
 
-const SideNavSmall = ({ handleClick }) => {
+const SideNavBig = ({ handleClick }) => {
   return (
     <>
       <div
         style={{ backgroundColor: layoutColor, minWidth: "300px" }}
-        className="rounded shadow-md mt-1 h-screen"
+        className="rounded shadow-md mt-1"
       >
         <div className="flex align-center justify-center">
           <SideNavInner handleClick={handleClick} />
@@ -87,7 +102,7 @@ const ScreenLayoutInner = () => {
   );
 };
 
-export const SmallScreenLayout = ({
+export const BigScreenLayout = ({
   handleCart,
   handleLogin,
   handleBurger,
@@ -101,13 +116,10 @@ export const SmallScreenLayout = ({
         handleLogin={handleLogin}
         handleBurger={handleBurger}
       />
-      {open ? (
-        <div style={{ marginTop: "5rem" }}>
-          <SideNavSmall handleClick={handleClick} />
-        </div>
-      ) : (
+      <div className="flex" style={{ marginTop: "5rem" }}>
+        {open ? <SideNavBig handleClick={handleClick} /> : null}
         <ScreenLayoutInner />
-      )}
+      </div>
     </div>
   );
 };

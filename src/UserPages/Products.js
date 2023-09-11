@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ProductList } from "components/lists/ProductsList";
-import { FragrancesList } from "components/lists/Fragrances";
-import { MakeupList } from "components/lists/Makeup";
-import { SkincareList } from "components/lists/Skincare";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -13,11 +10,10 @@ import {
   layoutColor,
   pageHeading,
   fontType,
-} from "components/feutures";
+} from "components/DisplaySettings/feutures";
 import axios from "axios";
 import Loading from "images/Loading.gif";
-
-const API_IP = "18.232.111.16:5000"
+import { API_IP } from "components/API/API";
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);

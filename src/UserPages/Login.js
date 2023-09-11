@@ -8,10 +8,10 @@ import {
   layoutColor,
   pageHeading,
   fontType,
-} from "components/feutures";
+} from "components/DisplaySettings/feutures";
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
-const API_IP = "18.232.111.16:5000"
+import { API_IP } from "components/API/API";
 
 const cookies = new Cookies();
 const axios = require("axios");
@@ -122,7 +122,7 @@ export const Login = () => {
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
-                size="small"
+                size="Medium"
                 onClick={handlePost}
               >
                 <Link activeClassName="is-active" to={"/products"}>
@@ -132,7 +132,7 @@ export const Login = () => {
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
-                size="small"
+                size="medium"
               >
                 <Link to={"/register"}>
                   <div clasName="text-md font-bold">Register</div>

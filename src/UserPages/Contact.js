@@ -1,5 +1,6 @@
 import React from "react";
-import { buttonColor, layoutColor, pageHeading } from "components/feutures";
+import { buttonColor, layoutColor, pageHeading } from "components/DisplaySettings/feutures";
+import { API_IP } from "components/API/API";
 
 export const Contact = () => {
   return (

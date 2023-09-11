@@ -11,7 +11,7 @@ import {
   layoutColor,
   pageHeading,
   fontType,
-} from "components/feutures";
+} from "components/DisplaySettings/feutures";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
 export const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
