@@ -58,7 +58,6 @@ const OtherDetails = ({
           sucess
           id="outlined-error-helper-text"
           label="email"
-          size="small"
         />
       </div>
     </div>
@@ -161,11 +160,10 @@ export const Register = () => {
           username: user_name,
           password: password,
           email: email,
-          cell:cell,
-          address:address,
-          lastName:lastName,
-          firstName:firstName,
-
+          cell: cell,
+          address: address,
+          lastName: lastName,
+          firstName: firstName,
         },
       })
       .then(function (response) {})
@@ -205,24 +203,27 @@ export const Register = () => {
           noValidate
           autoComplete="on"
         >
-          <OtherDetails
-            handleUserNameInput={handleUserNameInput}
-            handlePasswordInput={handlePasswordInput}
-            handleUserConfirmPasswordInput={handleUserConfirmPasswordInput}
-            handleUserEmailInput={handleUserEmailInput}
-          />
-          <PersonalDetails
-            handleUserFirstnameInput={handleUserFirstnameInput}
-            handleUserAddressInput={handleUserAddressInput}
-            handleCellInput={handleCellInput}
-            handleUserLastnameInput={handleUserLastnameInput}
-          />
+          <div className="grid grid-cols-2 gap-2">
+            <OtherDetails
+              handleUserNameInput={handleUserNameInput}
+              handlePasswordInput={handlePasswordInput}
+              handleUserConfirmPasswordInput={handleUserConfirmPasswordInput}
+              handleUserEmailInput={handleUserEmailInput}
+            />
+            <PersonalDetails
+              handleUserFirstnameInput={handleUserFirstnameInput}
+              handleUserAddressInput={handleUserAddressInput}
+              handleCellInput={handleCellInput}
+              handleUserLastnameInput={handleUserLastnameInput}
+            />
+          </div>
           <div className="flex align-center justify-center">
             <Button
-              sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+              sx={{ color: buttonColor, mt: 3, mx: "auto",maxWidth:"200pt" }}
               variant="outlined"
               onClick={handlePost}
               size="=large"
+              fullWidth="true"
             >
               <Link to={"/products"}>
                 <div clasName="text-md font-bold">Register</div>

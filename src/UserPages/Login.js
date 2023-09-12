@@ -81,6 +81,7 @@ export const Login = () => {
               sx={{ color: buttonColor }}
               onChange={handleUserNameInput}
               sucess
+              fullWidth="true"
               id="outlined-error-helper-text"
               label="Username"
             />
@@ -90,6 +91,7 @@ export const Login = () => {
               sx={{ color: buttonColor }}
               onChange={handleUserPasswordInput}
               sucess
+              fullWidth="true"
               id="outlined-error-helper-text"
               label="Password"
             />
@@ -118,11 +120,12 @@ export const Login = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 gap-1">
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
-                size="Medium"
+                size="large"
+                fullWidth="true"
                 onClick={handlePost}
               >
                 <Link activeClassName="is-active" to={"/products"}>
@@ -132,7 +135,8 @@ export const Login = () => {
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
-                size="medium"
+                fullWidth="true"
+                size="large"
               >
                 <Link to={"/register"}>
                   <div clasName="text-md font-bold">Register</div>
