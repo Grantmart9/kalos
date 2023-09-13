@@ -64,7 +64,7 @@ export const Login = () => {
 
   return (
     <div
-      style={{ color: pageHeading, marginTop: "10%" }}
+      style={{ color: pageHeading, marginTop: "30%" }}
       className="flex justify-center"
     >
       <div className="flex rounded shadow-md p-10">
@@ -97,12 +97,13 @@ export const Login = () => {
             />
           </div>
           {size == "MD" || size == "SM" || size == "XS" ? (
-            <div className="grid grid-rows-2">
+            <div className="grid grid-rows-2 p-2">
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
                 onClick={handlePost}
                 size="small"
+                fullWidth="true"
               >
                 <Link activeClassName="is-active" to={"/products"}>
                   <div clasName="text-md font-bold">Login</div>
@@ -113,6 +114,7 @@ export const Login = () => {
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"
                 size="small"
+                fullWidth="true"
               >
                 <Link to={"/register"}>
                   <div clasName="text-md font-bold">Register</div>
@@ -120,7 +122,7 @@ export const Login = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid grid-cols-2 gap-1 p-2">
               <Button
                 sx={{ color: buttonColor, mt: 3, mx: "auto" }}
                 variant="outlined"

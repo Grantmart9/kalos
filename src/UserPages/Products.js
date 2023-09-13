@@ -29,7 +29,7 @@ export const Products = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://"+API_IP+"/get_products", {})
+      .get("http://" + API_IP + "/get_products", {})
       .then(function (response) {
         setData(response.data);
         setLoading(false);
@@ -73,7 +73,7 @@ export const Products = () => {
     setOpen(!open);
 
     axios
-      .post("http://"+API_IP+"/add_to_cart", {
+      .post("http://" + API_IP + "/add_to_cart", {
         product_code: NewItem.product_code,
         volume: NewItem.volume,
         amount: NewItem.amount,
@@ -105,9 +105,11 @@ export const Products = () => {
           <div className="grid grid-cols-4 gap-2">
             {menu.map((product, i) => (
               <div key={i} className="p-2">
-                <Button onClick={() => handleClick({ product })}>
-                  {product.image}
-                </Button>
+                <div className="flex align-center justify-center">
+                  <Button onClick={() => handleClick({ product })}>
+                    <div style={{ maxWidth: " 28ch" }}>{product.image}</div>
+                  </Button>
+                </div>
                 <div className="text-center mt-1">{product.description}</div>
                 <div className="text-center">{product.brand}</div>
                 <div className="text-center">{product.price}</div>
@@ -129,20 +131,18 @@ export const Products = () => {
                   close
                 </Button>
               </div>
-              <div className="grid grid-rows-5 gap-1">
-                <div className="transition ease-in duration-3000 mx-auto my-auto">
-                  {item.image}
-                </div>
-                <div className="flex text-sm font-bold align-center justify-center">
+              <div>
+                <div className="grid grid-rows-5">
+                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    {item.image}
+                  </div>
+
                   {item.name}
-                </div>
-                <div className="flex text-sm font-bold align-center justify-center">
+
                   {item.description}
-                </div>
-                <div className="flex text-sm align-center justify-center">
+
                   {item.brand}
-                </div>
-                <div className="flex text-lg align-center justify-center">
+
                   {item.price}
                 </div>
               </div>

@@ -13,7 +13,6 @@ import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import Loading from "images/Loading.gif";
 import { API_IP } from "components/API/API";
-const cookies = new Cookies();
 const axios = require("axios");
 
 const OtherDetails = ({
@@ -21,7 +20,22 @@ const OtherDetails = ({
   handlePasswordInput,
   handleUserConfirmPasswordInput,
   handleUserEmailInput,
+  password,
+  confirmpassword,
 }) => {
+  var textFieldColour = "error";
+  if (confirmpassword != "") {
+    if (password == confirmpassword) {
+      textFieldColour = "success";
+      console.log(textFieldColour);
+    } else {
+      textFieldColour = "error";
+      console.log(textFieldColour);
+    }
+  } else {
+    textFieldColour = "error";
+  }
+
   return (
     <div>
       <div>
@@ -38,6 +52,7 @@ const OtherDetails = ({
           sx={{ color: buttonColor }}
           onChange={handlePasswordInput}
           sucess
+          color={textFieldColour}
           id="outlined-error-helper-text"
           label="Password"
         />
@@ -47,6 +62,7 @@ const OtherDetails = ({
           sx={{ color: buttonColor }}
           onChange={handleUserConfirmPasswordInput}
           sucess
+          color={textFieldColour}
           id="outlined-error-helper-text"
           label="Confirm Password"
         />
@@ -209,6 +225,8 @@ export const Register = () => {
               handlePasswordInput={handlePasswordInput}
               handleUserConfirmPasswordInput={handleUserConfirmPasswordInput}
               handleUserEmailInput={handleUserEmailInput}
+              confirmpassword={confirmpassword}
+              password={password}
             />
             <PersonalDetails
               handleUserFirstnameInput={handleUserFirstnameInput}
@@ -219,7 +237,7 @@ export const Register = () => {
           </div>
           <div className="flex align-center justify-center">
             <Button
-              sx={{ color: buttonColor, mt: 3, mx: "auto",maxWidth:"200pt" }}
+              sx={{ color: buttonColor, mt: 3, mx: "auto", maxWidth: "200pt" }}
               variant="outlined"
               onClick={handlePost}
               size="=large"
