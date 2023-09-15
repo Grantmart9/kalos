@@ -12,6 +12,7 @@ import {
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import { API_IP } from "components/API/API";
+import Loading from "images/Loading.gif";
 
 const cookies = new Cookies();
 const axios = require("axios");
@@ -22,8 +23,8 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   /*function variables */
   const [loading, setLoading] = useState(false);
-  const [buttonCount,setButtonCount] = useState();
-  const [JWT, setJWT] = useState(null);
+  const [buttonCount, setButtonCount] = useState();
+  const [JWT, setJWT] = useState("");
   const [error, setError] = useState();
   const size = Size();
 
@@ -36,9 +37,9 @@ export const Login = () => {
 
   const handlePost = () => {
     setLoading(true);
-    setButtonCount(buttonCount+1)
+    setButtonCount(buttonCount + 1);
     axios
-      .post("http://"+API_IP+"/auth", {
+      .post("http://" + API_IP + "/auth", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         user_details: {
@@ -47,8 +48,8 @@ export const Login = () => {
         },
       })
       .then(function (response) {
-        cookies.set("Token", response.data.JWT, { path: "/" });
-        setJWT(response.data.JWT);
+        setJWT(response.data);
+        cookies.set('Token', response.data, { path: '/' });
         setLoading(false);
       })
       .catch(function (error) {
@@ -56,98 +57,199 @@ export const Login = () => {
         setLoading(false);
       });
   };
-  console.log(loading);
 
   if (error) {
     <div>error</div>;
   }
 
   return (
-    <div
-      style={{ color: pageHeading, marginTop: "30%" }}
-      className="flex justify-center"
-    >
-      <div className="flex rounded shadow-md p-10">
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
-          }}
-          noValidate
-          autoComplete="on"
+    <div>
+      {loading ? (
+        <div
+          style={{ color: pageHeading }}
+          className="h-screen flex items-center justify-center"
         >
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handleUserNameInput}
-              sucess
-              fullWidth="true"
-              id="outlined-error-helper-text"
-              label="Username"
-            />
-          </div>
-          <div>
-            <TextField
-              sx={{ color: buttonColor }}
-              onChange={handleUserPasswordInput}
-              sucess
-              fullWidth="true"
-              id="outlined-error-helper-text"
-              label="Password"
-            />
-          </div>
+          <img width={80} height={80} src={Loading} />
+        </div>
+      ) : (
+        <>
           {size == "MD" || size == "SM" || size == "XS" ? (
-            <div className="grid grid-rows-2 p-2">
-              <Button
-                sx={{ color: buttonColor, mt: 3, mx: "auto" }}
-                variant="outlined"
-                onClick={handlePost}
-                size="small"
-                fullWidth="true"
-              >
-                <Link activeClassName="is-active" to={"/products"}>
-                  <div clasName="text-md font-bold">Login</div>
-                </Link>
-              </Button>
+            <div
+              style={{ color: pageHeading, marginTop: "25%" }}
+              className="flex justify-center"
+            >
+              <div className="flex rounded shadow-md p-10">
+                <Box
+                  component="form"
+                  sx={{
+                    "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="on"
+                >
+                  <div>
+                    <TextField
+                      sx={{ color: buttonColor }}
+                      onChange={handleUserNameInput}
+                      sucess
+                      fullWidth="true"
+                      id="outlined-error-helper-text"
+                      label="Username"
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ color: buttonColor }}
+                      onChange={handleUserPasswordInput}
+                      sucess
+                      fullWidth="true"
+                      id="outlined-error-helper-text"
+                      label="Password"
+                    />
+                  </div>
+                  {size == "MD" || size == "SM" || size == "XS" ? (
+                    <div className="grid grid-rows-2 p-2">
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        onClick={handlePost}
+                        size="small"
+                        fullWidth="true"
+                      >
+                        <Link activeClassName="is-active" to={"/products"}>
+                          <div clasName="text-md font-bold">Login</div>
+                        </Link>
+                      </Button>
 
-              <Button
-                sx={{ color: buttonColor, mt: 3, mx: "auto" }}
-                variant="outlined"
-                size="small"
-                fullWidth="true"
-              >
-                <Link to={"/register"}>
-                  <div clasName="text-md font-bold">Register</div>
-                </Link>
-              </Button>
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        size="small"
+                        fullWidth="true"
+                      >
+                        <Link to={"/register"}>
+                          <div clasName="text-md font-bold">Register</div>
+                        </Link>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-1 p-2">
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        size="large"
+                        fullWidth="true"
+                        onClick={handlePost}
+                      >
+                        <Link activeClassName="is-active" to={"/products"}>
+                          <div clasName="text-md font-bold">Login</div>
+                        </Link>
+                      </Button>
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        fullWidth="true"
+                        size="large"
+                      >
+                        <Link to={"/register"}>
+                          <div clasName="text-md font-bold">Register</div>
+                        </Link>
+                      </Button>
+                    </div>
+                  )}
+                </Box>
+              </div>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-1 p-2">
-              <Button
-                sx={{ color: buttonColor, mt: 3, mx: "auto" }}
-                variant="outlined"
-                size="large"
-                fullWidth="true"
-                onClick={handlePost}
-              >
-                <Link activeClassName="is-active" to={"/products"}>
-                  <div clasName="text-md font-bold">Login</div>
-                </Link>
-              </Button>
-              <Button
-                sx={{ color: buttonColor, mt: 3, mx: "auto" }}
-                variant="outlined"
-                fullWidth="true"
-                size="large"
-              >
-                <Link to={"/register"}>
-                  <div clasName="text-md font-bold">Register</div>
-                </Link>
-              </Button>
+            <div
+              style={{ color: pageHeading, marginTop: "5%" }}
+              className="flex justify-center"
+            >
+              <div className="flex rounded shadow-md p-10">
+                <Box
+                  component="form"
+                  sx={{
+                    "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="on"
+                >
+                  <div>
+                    <TextField
+                      sx={{ color: buttonColor }}
+                      onChange={handleUserNameInput}
+                      sucess
+                      fullWidth="true"
+                      id="outlined-error-helper-text"
+                      label="Username"
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ color: buttonColor }}
+                      onChange={handleUserPasswordInput}
+                      sucess
+                      fullWidth="true"
+                      id="outlined-error-helper-text"
+                      label="Password"
+                    />
+                  </div>
+                  {size == "MD" || size == "SM" || size == "XS" ? (
+                    <div className="grid grid-rows-2 p-2">
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        onClick={handlePost}
+                        size="medium"
+                        fullWidth="true"
+                      >
+                        <Link activeClassName="is-active" to={"/products"}>
+                          <div clasName="text-md font-bold">Login</div>
+                        </Link>
+                      </Button>
+
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        size="medium"
+                        fullWidth="true"
+                      >
+                        <Link to={"/register"}>
+                          <div clasName="text-md font-bold">Register</div>
+                        </Link>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-1 p-2">
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        size="medium"
+                        fullWidth="true"
+                        onClick={handlePost}
+                      >
+                        <Link activeClassName="is-active" to={"/products"}>
+                          <div clasName="text-md font-bold">Login</div>
+                        </Link>
+                      </Button>
+                      <Button
+                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                        variant="outlined"
+                        fullWidth="true"
+                        size="medium"
+                      >
+                        <Link to={"/register"}>
+                          <div clasName="text-md font-bold">Register</div>
+                        </Link>
+                      </Button>
+                    </div>
+                  )}
+                </Box>
+              </div>
             </div>
           )}
-        </Box>
-      </div>
+        </>
+      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {
 import { API_IP } from "components/API/API";
 import { Size } from "media-query";
 
-export const About = () => {
+export const Landing = () => {
   const size = Size();
 
   /*size == "MD" || size == "SM" || size == "XS"*/
@@ -18,7 +18,7 @@ export const About = () => {
           style={{ color: pageHeading, marginTop: "15%" }}
           className="text-xl flex align-center justify-center mb-2 p-2 w-full"
         >
-          About
+          Landing
         </div>
       ) : (
         <div

@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import Loading from "images/Loading.gif";
 import { API_IP } from "components/API/API";
+import { Size } from "media-query";
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);

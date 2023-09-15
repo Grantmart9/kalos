@@ -1,6 +1,7 @@
 import React from "react";
 import { buttonColor, layoutColor, pageHeading } from "components/DisplaySettings/feutures";
 import { API_IP } from "components/API/API";
+import { Size } from "media-query";
 
 export const Contact = () => {
   return (

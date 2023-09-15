@@ -1,5 +1,6 @@
 import React from "react";
 import { buttonColor, layoutColor, pageHeading } from "components/DisplaySettings/feutures";
+import { Size } from "media-query";
 
 export const ProductListUpdate = () => {
   return (
