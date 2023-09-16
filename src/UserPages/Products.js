@@ -26,7 +26,6 @@ export const Products = () => {
   const [amount, setAmount] = useState();
   const [volume, setVolume] = useState();
 
-
   useEffect(() => {
     setLoading(true);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -89,8 +88,6 @@ export const Products = () => {
     console.log(NewItem.product_code);
   };
 
-  
-
   return (
     <div>
       {!loading ? (
@@ -136,18 +133,24 @@ export const Products = () => {
                 </Button>
               </div>
               <div>
-                <div className="grid grid-rows-5">
-                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                    {item.image}
+                <div className="grid grid-rows-2">
+                  <div>
+                    <div className="flex mt-20 justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                      {item.image}
+                    </div>
+                    <div className="flex mt-20 justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                      {item.name}
+                    </div>
+                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                      {item.description}
+                    </div>
+                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                      {item.brand}
+                    </div>
+                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                      {item.price}
+                    </div>
                   </div>
-
-                  {item.name}
-
-                  {item.description}
-
-                  {item.brand}
-
-                  {item.price}
                 </div>
               </div>
             </DialogContent>
