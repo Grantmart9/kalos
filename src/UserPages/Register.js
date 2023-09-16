@@ -35,7 +35,6 @@ const OtherDetails = ({
   } else {
     textFieldColour = "error";
   }
-  
 
   return (
     <div>
@@ -176,151 +175,140 @@ export const Register = () => {
     setLoading(true);
     axios
       .post("http://" + API_IP + "/put_users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        user_details: {
-          username: user_name,
-          password: password,
-          email: email,
-          cell: cell,
-          address: address,
-          lastName: lastName,
-          firstName: firstName,
-        },
+        username: user_name,
+        password: password,
+        email: email,
+        cell: cell,
+        address: address,
+        lastname: lastName,
+        firstname: firstName,
       })
       .then(function (response) {})
       .catch(function (error) {});
   };
   console.log(loading);
 
-  if (loading) {
-    return (
-      <div
-        style={{ color: pageHeading }}
-        className="flex justify-center align-center"
-      >
-        <div className="grid grid-rows-2 gap-6">
-          <div className="flex align-center justify-center">
-            <img src={Loading} />
-          </div>
-          <div>Loging in as: {user_name}</div>
-        </div>
-      </div>
-    );
-  }
   if (error) {
     <div>error</div>;
   }
-
-  
-
   return (
     <div>
-      {size == "MD" || size == "SM" || size == "XS" ? (
+      {loading ? (
         <div
-          style={{ color: pageHeading, marginTop: "25%" }}
-          className="flex justify-center align-center"
+          style={{ color: pageHeading }}
+          className="h-screen flex items-center justify-center"
         >
-          <div className="flex rounded shadow-md p-10">
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
-              }}
-              noValidate
-              autoComplete="on"
-            >
-              <div className="grid grid-cols-2 gap-2">
-                <OtherDetails
-                  handleUserNameInput={handleUserNameInput}
-                  handlePasswordInput={handlePasswordInput}
-                  handleUserConfirmPasswordInput={
-                    handleUserConfirmPasswordInput
-                  }
-                  handleUserEmailInput={handleUserEmailInput}
-                  confirmpassword={confirmpassword}
-                  password={password}
-                />
-                <PersonalDetails
-                  handleUserFirstnameInput={handleUserFirstnameInput}
-                  handleUserAddressInput={handleUserAddressInput}
-                  handleCellInput={handleCellInput}
-                  handleUserLastnameInput={handleUserLastnameInput}
-                />
-              </div>
-              <div className="flex align-center justify-center">
-                <Button
-                  sx={{
-                    color: buttonColor,
-                    mt: 3,
-                    mx: "auto",
-                    maxWidth: "200pt",
-                  }}
-                  variant="outlined"
-                  onClick={handlePost}
-                  size="=large"
-                  fullWidth="true"
-                >
-                  <Link to={"/products"}>
-                    <div clasName="text-md font-bold">Register</div>
-                  </Link>
-                </Button>
-              </div>
-            </Box>
-          </div>
+          <img width={80} height={80} src={Loading} />
         </div>
       ) : (
-        <div
-          style={{ color: pageHeading, marginTop: "10%" }}
-          className="flex justify-center align-center"
-        >
-          <div className="flex rounded shadow-md p-10">
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
-              }}
-              noValidate
-              autoComplete="on"
+        <div>
+          {size == "MD" || size == "SM" || size == "XS" ? (
+            <div
+              style={{ color: pageHeading, marginTop: "25%" }}
+              className="flex justify-center align-center"
             >
-              <div className="grid grid-cols-2 gap-2">
-                <OtherDetails
-                  handleUserNameInput={handleUserNameInput}
-                  handlePasswordInput={handlePasswordInput}
-                  handleUserConfirmPasswordInput={
-                    handleUserConfirmPasswordInput
-                  }
-                  handleUserEmailInput={handleUserEmailInput}
-                  confirmpassword={confirmpassword}
-                  password={password}
-                />
-                <PersonalDetails
-                  handleUserFirstnameInput={handleUserFirstnameInput}
-                  handleUserAddressInput={handleUserAddressInput}
-                  handleCellInput={handleCellInput}
-                  handleUserLastnameInput={handleUserLastnameInput}
-                />
-              </div>
-              <div className="flex align-center justify-center">
-                <Button
+              <div className="flex rounded shadow-md p-10">
+                <Box
+                  component="form"
                   sx={{
-                    color: buttonColor,
-                    mt: 3,
-                    mx: "auto",
-                    maxWidth: "200pt",
+                    "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
                   }}
-                  variant="outlined"
-                  onClick={handlePost}
-                  size="=large"
-                  fullWidth="true"
+                  noValidate
+                  autoComplete="on"
                 >
-                  <Link to={"/products"}>
-                    <div clasName="text-md font-bold">Register</div>
-                  </Link>
-                </Button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <OtherDetails
+                      handleUserNameInput={handleUserNameInput}
+                      handlePasswordInput={handlePasswordInput}
+                      handleUserConfirmPasswordInput={
+                        handleUserConfirmPasswordInput
+                      }
+                      handleUserEmailInput={handleUserEmailInput}
+                      confirmpassword={confirmpassword}
+                      password={password}
+                    />
+                    <PersonalDetails
+                      handleUserFirstnameInput={handleUserFirstnameInput}
+                      handleUserAddressInput={handleUserAddressInput}
+                      handleCellInput={handleCellInput}
+                      handleUserLastnameInput={handleUserLastnameInput}
+                    />
+                  </div>
+                  <div className="flex align-center justify-center">
+                    <Button
+                      sx={{
+                        color: buttonColor,
+                        mt: 3,
+                        mx: "auto",
+                        maxWidth: "200pt",
+                      }}
+                      variant="outlined"
+                      onClick={handlePost}
+                      size="=large"
+                      fullWidth="true"
+                    >
+                      <Link activeClassName="is-active" to={"/login"}>
+                        <div clasName="text-md font-bold">Register</div>
+                      </Link>
+                    </Button>
+                  </div>
+                </Box>
               </div>
-            </Box>
-          </div>
+            </div>
+          ) : (
+            <div
+              style={{ color: pageHeading, marginTop: "10%" }}
+              className="flex justify-center align-center"
+            >
+              <div className="flex rounded shadow-md p-10">
+                <Box
+                  component="form"
+                  sx={{
+                    "& .MuiTextField-root": { m: 1, maxWidth: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="on"
+                >
+                  <div className="grid grid-cols-2 gap-2">
+                    <OtherDetails
+                      handleUserNameInput={handleUserNameInput}
+                      handlePasswordInput={handlePasswordInput}
+                      handleUserConfirmPasswordInput={
+                        handleUserConfirmPasswordInput
+                      }
+                      handleUserEmailInput={handleUserEmailInput}
+                      confirmpassword={confirmpassword}
+                      password={password}
+                    />
+                    <PersonalDetails
+                      handleUserFirstnameInput={handleUserFirstnameInput}
+                      handleUserAddressInput={handleUserAddressInput}
+                      handleCellInput={handleCellInput}
+                      handleUserLastnameInput={handleUserLastnameInput}
+                    />
+                  </div>
+                  <div className="flex align-center justify-center">
+                    <Button
+                      sx={{
+                        color: buttonColor,
+                        mt: 3,
+                        mx: "auto",
+                        maxWidth: "200pt",
+                      }}
+                      variant="outlined"
+                      onClick={handlePost}
+                      size="=large"
+                      fullWidth="true"
+                    >
+                      <Link activeClassName="is-active" to={"/login"}>
+                        <div clasName="text-md font-bold">Register</div>
+                      </Link>
+                    </Button>
+                  </div>
+                </Box>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
