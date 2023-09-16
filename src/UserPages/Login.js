@@ -16,7 +16,7 @@ import Loading from "images/Loading.gif";
 const cookies = new Cookies();
 const axios = require("axios");
 
-export const Login = ({ setJWT }) => {
+export const Login = ({setJWT}) => {
   /*State change variables*/
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,6 @@ export const Login = ({ setJWT }) => {
       })
       .then(function () {
         setLoading(false);
-        window.location.reload();
       })
       .catch(function (error) {
         setError("Request Error !!!");
