@@ -19,9 +19,13 @@ import "react-datetime/css/react-datetime.css";
 import "tailwind.css";
 import { Home } from "UserPages/HomePage";
 import { createTheme, ThemeProvider } from "@material-ui/core";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const theme = createTheme({});
 window.theme = theme;
+cookies.set('Token', '', { path: '/' })
 ReactDOM.render(
   <ThemeProvider >
     <BrowserRouter>

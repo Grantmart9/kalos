@@ -15,8 +15,6 @@ import {
   fontType,
 } from "components/DisplaySettings/feutures";
 import { TopBar } from "components/DisplaySettings/TopBar";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 /*This needs to be */
 const menuItems = [
@@ -39,10 +37,17 @@ const ManagerMenueItems = [
   { name: "Projections", path: "/projections" },
 ];
 
-const SideNavInner = ({ handleClick }) => {
+const SideNavInner = ({ handleClick, jwt }) => {
+  var Menu;
+  console.log(jwt);
+  if (jwt || jwt == null) {
+    Menu=RegisteredMenuItems
+  } else {
+    Menu=menuItems
+  }
   return (
     <div className="grid grid-rows-4 gap-2 p-2 mt-5">
-      {RegisteredMenuItems.map((item) => (
+      {Menu.map((item) => (
         <Button
           onClick={handleClick}
           size="large"
@@ -59,7 +64,7 @@ const SideNavInner = ({ handleClick }) => {
   );
 };
 
-const SideNavBig = ({ handleClick }) => {
+const SideNavBig = ({ handleClick, jwt }) => {
   return (
     <>
       <div
@@ -67,14 +72,14 @@ const SideNavBig = ({ handleClick }) => {
         className="rounded shadow-md mt-1"
       >
         <div className="flex align-center justify-center">
-          <SideNavInner handleClick={handleClick} />
+          <SideNavInner handleClick={handleClick} jwt={jwt} />
         </div>
       </div>
     </>
   );
 };
 
-const ScreenLayoutInner = () => {
+const ScreenLayoutInner = ({ setJWT }) => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
@@ -94,7 +99,7 @@ const ScreenLayoutInner = () => {
           <Cart />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login setJWT={setJWT} />
         </Route>
         <Route path="/register">
           <Register />
@@ -111,23 +116,8 @@ export const BigScreenLayout = ({
   handleClick,
   open,
 }) => {
-  const [Token_avail, setToken_avail] = useState(menuItems);
-  const [loading, setLoading] = useState(false);
+  const [jwt, setJWT] = useState(false);
 
-  useEffect(() => {
-    setLoading(!loading);
-    console.log(loading)
-    // 👇️ scroll to top on page load
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    const JWT = cookies.get("Token");
-    setToken_avail(JWT);
-    setLoading(!loading);
-    console.log(loading)
-  }, []);
-
-  console.log(loading)
-
-  
   return (
     <div>
       <TopBar
@@ -136,8 +126,8 @@ export const BigScreenLayout = ({
         handleBurger={handleBurger}
       />
       <div className="flex" style={{ marginTop: "5rem" }}>
-        {open ? <SideNavBig handleClick={handleClick} /> : null}
-        <ScreenLayoutInner />
+        {open ? <SideNavBig handleClick={handleClick} jwt={jwt} /> : null}
+        <ScreenLayoutInner setJWT={setJWT} />
       </div>
     </div>
   );

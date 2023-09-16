@@ -26,7 +26,6 @@ export const Products = () => {
   const [amount, setAmount] = useState();
   const [volume, setVolume] = useState();
 
-  console.log(data);
   useEffect(() => {
     setLoading(true);
     axios

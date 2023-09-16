@@ -13,18 +13,15 @@ import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import { API_IP } from "components/API/API";
 import Loading from "images/Loading.gif";
-
 const cookies = new Cookies();
 const axios = require("axios");
 
-export const Login = () => {
+export const Login = ({ setJWT }) => {
   /*State change variables*/
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
   /*function variables */
   const [loading, setLoading] = useState(false);
-  const [buttonCount, setButtonCount] = useState();
-  const [JWT, setJWT] = useState("");
   const [error, setError] = useState();
   const size = Size();
 
@@ -37,7 +34,6 @@ export const Login = () => {
 
   const handlePost = () => {
     setLoading(true);
-    setButtonCount(buttonCount + 1);
     axios
       .post("http://" + API_IP + "/auth", {
         method: "GET",
@@ -48,20 +44,26 @@ export const Login = () => {
         },
       })
       .then(function (response) {
-        setJWT(response.data);
-        cookies.set('Token', response.data, { path: '/' });
+        if (response.data != null) {
+          cookies.set("Token", response.data);
+          setJWT(true);
+        } else {
+          cookies.set("Token", "Not Authorised");
+        }
+      })
+      .then(function () {
         setLoading(false);
       })
       .catch(function (error) {
         setError("Request Error !!!");
         setLoading(false);
+        window.location.reload();
       });
   };
 
   if (error) {
-    <div>error</div>;
+    <div>{error}</div>;
   }
-
   return (
     <div>
       {loading ? (
@@ -87,7 +89,7 @@ export const Login = () => {
                   noValidate
                   autoComplete="on"
                 >
-                  <div>
+                  <div className="flex align-center justify-center">
                     <TextField
                       sx={{ color: buttonColor }}
                       onChange={handleUserNameInput}
@@ -97,7 +99,7 @@ export const Login = () => {
                       label="Username"
                     />
                   </div>
-                  <div>
+                  <div className="flex align-center justify-center">
                     <TextField
                       sx={{ color: buttonColor }}
                       onChange={handleUserPasswordInput}
@@ -174,7 +176,7 @@ export const Login = () => {
                   noValidate
                   autoComplete="on"
                 >
-                  <div>
+                  <div className="flex align-center justify-center">
                     <TextField
                       sx={{ color: buttonColor }}
                       onChange={handleUserNameInput}
@@ -184,7 +186,7 @@ export const Login = () => {
                       label="Username"
                     />
                   </div>
-                  <div>
+                  <div className="flex align-center justify-center">
                     <TextField
                       sx={{ color: buttonColor }}
                       onChange={handleUserPasswordInput}
