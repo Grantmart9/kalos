@@ -1,9 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {buttonColor,layoutColor,pageHeading} from "components/DisplaySettings/feutures";
 import { Size } from "media-query";
 
 export const Cart = () => {
   const size = Size();
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <div>
       {size == "MD" || size == "SM" || size == "XS" ? (

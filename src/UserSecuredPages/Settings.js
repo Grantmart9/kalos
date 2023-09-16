@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   buttonColor,
   layoutColor,
@@ -9,6 +9,10 @@ import { Size } from "media-query";
 
 export const Settings = () => {
   const size = Size();
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   /*size == "MD" || size == "SM" || size == "XS"*/
   return (

@@ -18,6 +18,10 @@ import {
 } from "components/DisplaySettings/feutures";
 import { TopBar } from "components/DisplaySettings/TopBar";
 
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 /*This needs to be */
 const menuItems = [
   { name: "Products", path: "/products" },
@@ -37,9 +41,10 @@ const SideNavInner = ({ handleClick, jwt }) => {
   var Menu;
   console.log(jwt);
   if (jwt) {
-    Menu=RegisteredMenuItems
-  } else {
-    Menu=menuItems
+    Menu = RegisteredMenuItems;
+  }
+   else {
+    Menu = menuItems;
   }
   return (
     <div className="grid grid-rows-4 gap-2 p-2 mt-5">
@@ -121,7 +126,14 @@ export const BigScreenLayout = ({
   handleClick,
   open,
 }) => {
-  const [jwt, setJWT] = useState(false);
+  var JWT_State = false;
+  var jwt_avail = cookies.get("Token");
+  if (jwt_avail != '') {
+    JWT_State = true;
+  } else {
+    JWT_State = false;
+  }
+  const [jwt, setJWT] = useState(JWT_State);
 
   return (
     <div>

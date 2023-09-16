@@ -26,8 +26,10 @@ export const Products = () => {
   const [amount, setAmount] = useState();
   const [volume, setVolume] = useState();
 
+
   useEffect(() => {
     setLoading(true);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     axios
       .get("http://" + API_IP + "/get_products", {})
       .then(function (response) {
@@ -86,6 +88,8 @@ export const Products = () => {
       });
     console.log(NewItem.product_code);
   };
+
+  
 
   return (
     <div>

@@ -8,7 +8,6 @@ import { API_IP } from "components/API/API";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-
 export const Home = () => {
   const [open, setOpen] = useState(true);
   const ScreenSize = Size();
@@ -28,11 +27,6 @@ export const Home = () => {
   const handleClickSmall = () => {
     setOpen(!open);
   };
-
-  useEffect(() => {
-    // 👇️ scroll to top on page load
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
 
   return (
     <div>

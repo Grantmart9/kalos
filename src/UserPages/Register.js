@@ -35,6 +35,7 @@ const OtherDetails = ({
   } else {
     textFieldColour = "error";
   }
+  
 
   return (
     <div>
@@ -141,6 +142,11 @@ export const Register = () => {
   const [error, setError] = useState();
   const size = Size();
 
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const handleUserNameInput = (e) => {
     setUser_name(e.target.value);
   };
@@ -205,6 +211,9 @@ export const Register = () => {
   if (error) {
     <div>error</div>;
   }
+
+  
+
   return (
     <div>
       {size == "MD" || size == "SM" || size == "XS" ? (

@@ -18,6 +18,10 @@ import {
 } from "components/DisplaySettings/feutures";
 import { TopBar } from "components/DisplaySettings/TopBar";
 
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 const menuItems = [
   { name: "Products", path: "/products" },
   { name: "About", path: "/about" },
@@ -33,13 +37,13 @@ const RegisteredMenuItems = [
   { name: "settings", path: "/settings" },
 ];
 
-const SideNavInner = ({ handleClick,jwt }) => {
+const SideNavInner = ({ handleClick, jwt }) => {
   var Menu;
   console.log(jwt);
   if (jwt) {
-    Menu=RegisteredMenuItems
+    Menu = RegisteredMenuItems;
   } else {
-    Menu=menuItems
+    Menu = menuItems;
   }
   return (
     <div className="grid grid-rows-4 gap-2 p-2 mt-5">
@@ -60,7 +64,7 @@ const SideNavInner = ({ handleClick,jwt }) => {
   );
 };
 
-const SideNavSmall = ({ handleClick,jwt }) => {
+const SideNavSmall = ({ handleClick, jwt }) => {
   return (
     <>
       <div
@@ -75,7 +79,7 @@ const SideNavSmall = ({ handleClick,jwt }) => {
   );
 };
 
-const ScreenLayoutInner = ({setJWT}) => {
+const ScreenLayoutInner = ({ setJWT }) => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
@@ -121,7 +125,14 @@ export const SmallScreenLayout = ({
   handleClick,
   open,
 }) => {
-  const [jwt, setJWT] = useState(false);
+  var JWT_State = false;
+  var jwt_avail = cookies.get("Token");
+  if (jwt_avail != '') {
+    JWT_State = true;
+  } else {
+    JWT_State = false;
+  }
+  const [jwt, setJWT] = useState(JWT_State);
   return (
     <div>
       <TopBar
