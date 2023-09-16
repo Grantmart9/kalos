@@ -53,6 +53,7 @@ export const Login = ({ setJWT }) => {
       })
       .then(function () {
         setLoading(false);
+        window.location.replace("/products");
       })
       .catch(function (error) {
         setError("Request Error !!!");

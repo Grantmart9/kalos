@@ -48,19 +48,6 @@ export const TopBar = ({ handleBurger, handleCart, handleLogin }) => {
               </div>
             </Link>
           </Button>
-          <Button onClick={handleCart} sx={{ mr: 1 }}>
-            <Link to={"/cart"}>
-              <ShoppingBasketIcon
-                sx={{
-                  color: "gray",
-                  alignContent: "bottom",
-                  justify: "center",
-                  align: "center",
-                  color: buttonColor,
-                }}
-              />
-            </Link>
-          </Button>
         </Toolbar>
       </AppBar>
     </>

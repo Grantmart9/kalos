@@ -5,8 +5,10 @@ import Button from "@mui/material/Button";
 import { About } from "UserPages/About";
 import { Contact } from "UserPages/Contact";
 import { Products } from "UserPages/Products";
-import { Cart } from "SecuredPages/Cart";
+import { Cart } from "UserSecuredPages/Cart";
 import { Login } from "UserPages/Login";
+import { Settings } from "UserSecuredPages/Settings";
+import { Orders } from "UserSecuredPages/Orders";
 import { Register } from "UserPages/Register";
 import {
   buttonColor,
@@ -27,21 +29,21 @@ const RegisteredMenuItems = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
   { name: "Orders", path: "/orders" },
-  { name: "User settings", path: "/usersettings" },
+  { name: "My Cart", path: "/cart" },
+  { name: "settings", path: "/settings" },
 ];
 
-const ManagerMenueItems = [
-  { name: "Products", path: "/products" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-  { name: "Orders", path: "/orders" },
-  { name: "User settings", path: "/usersettings" },
-];
-
-const SideNavInner = ({ handleClick }) => {
+const SideNavInner = ({ handleClick,jwt }) => {
+  var Menu;
+  console.log(jwt);
+  if (jwt) {
+    Menu=RegisteredMenuItems
+  } else {
+    Menu=menuItems
+  }
   return (
     <div className="grid grid-rows-4 gap-2 p-2 mt-5">
-      {menuItems.map((item) => (
+      {Menu.map((item) => (
         <Button
           onClick={handleClick}
           size="large"
@@ -58,7 +60,7 @@ const SideNavInner = ({ handleClick }) => {
   );
 };
 
-const SideNavSmall = ({ handleClick }) => {
+const SideNavSmall = ({ handleClick,jwt }) => {
   return (
     <>
       <div
@@ -66,14 +68,14 @@ const SideNavSmall = ({ handleClick }) => {
         className="rounded shadow-md mt-1 h-screen"
       >
         <div className="flex align-center justify-center">
-          <SideNavInner handleClick={handleClick} />
+          <SideNavInner handleClick={handleClick} jwt={jwt} />
         </div>
       </div>
     </>
   );
 };
 
-const ScreenLayoutInner = () => {
+const ScreenLayoutInner = ({setJWT}) => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
@@ -93,10 +95,19 @@ const ScreenLayoutInner = () => {
           <Cart />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login setJWT={setJWT} />
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/orders">
+          <Orders />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>
@@ -110,6 +121,7 @@ export const SmallScreenLayout = ({
   handleClick,
   open,
 }) => {
+  const [jwt, setJWT] = useState(false);
   return (
     <div>
       <TopBar
@@ -119,10 +131,10 @@ export const SmallScreenLayout = ({
       />
       {open ? (
         <div style={{ marginTop: "5rem" }}>
-          <SideNavSmall handleClick={handleClick} />
+          <SideNavSmall handleClick={handleClick} jwt={jwt} />
         </div>
       ) : (
-        <ScreenLayoutInner />
+        <ScreenLayoutInner setJWT={setJWT} />
       )}
     </div>
   );

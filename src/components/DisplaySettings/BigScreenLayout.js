@@ -5,9 +5,11 @@ import Button from "@mui/material/Button";
 import { About } from "UserPages/About";
 import { Contact } from "UserPages/Contact";
 import { Products } from "UserPages/Products";
-import { Cart } from "SecuredPages/Cart";
+import { Cart } from "UserSecuredPages/Cart";
 import { Login } from "UserPages/Login";
 import { Register } from "UserPages/Register";
+import { Settings } from "UserSecuredPages/Settings";
+import { Orders } from "UserSecuredPages/Orders";
 import Loading from "images/Loading.gif";
 import {
   buttonColor,
@@ -27,20 +29,14 @@ const RegisteredMenuItems = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
   { name: "Orders", path: "/orders" },
-  { name: "User settings", path: "/usersettings" },
-];
-const ManagerMenueItems = [
-  { name: "Products", path: "/products" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-  { name: "Orders", path: "/orders" },
-  { name: "Projections", path: "/projections" },
+  { name: "My Cart", path: "/cart" },
+  { name: "settings", path: "/settings" },
 ];
 
 const SideNavInner = ({ handleClick, jwt }) => {
   var Menu;
   console.log(jwt);
-  if (jwt || jwt == null) {
+  if (jwt) {
     Menu=RegisteredMenuItems
   } else {
     Menu=menuItems
@@ -103,6 +99,15 @@ const ScreenLayoutInner = ({ setJWT }) => {
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/orders">
+          <Orders />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>
