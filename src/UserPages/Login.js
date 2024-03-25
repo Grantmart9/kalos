@@ -52,7 +52,6 @@ export const Login = ({ setJWT }) => {
       })
       .then(function (response) {
         if (response.data != null) {
-          console.log(response.data.JWT)
           cookies.set("Token", response.data.JWT);
           cookies.set("User_id",response.data.user_id)
           setJWT(true);

@@ -15,6 +15,8 @@ import axios from "axios";
 import Loading from "images/Loading.gif";
 import { API_IP } from "components/API/API";
 import { Size } from "media-query";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
@@ -56,19 +58,20 @@ export const Products = () => {
 
   const handleAmount = (event) => {
     setAmount(event.target.value);
-    console.log(amount);
   };
 
   const handleVolume = (event) => {
     setVolume(event.target.value);
-    console.log(volume);
   };
 
   const handleAdd = () => {
     var NewItem = item;
+    var token = cookies.get("Token")
+    var user_id = cookies.get("Token")
 
     NewItem["volume"] = volume;
     NewItem["amount"] = amount;
+  
     delete NewItem.image;
 
     setOpen(!open);
@@ -78,15 +81,13 @@ export const Products = () => {
         product_code: NewItem.product_code,
         volume: NewItem.volume,
         amount: NewItem.amount,
+        token: token,
+        user_id: user_id
       })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    console.log(NewItem.product_code);
+      .then(function (response) {})
+      .catch(function (error) {});
   };
+  console.log();
 
   return (
     <div>
