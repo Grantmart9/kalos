@@ -16,7 +16,7 @@ import Loading from "images/Loading.gif";
 const cookies = new Cookies();
 const axios = require("axios");
 
-export const Login = ({setJWT}) => {
+export const Login = ({ setJWT }) => {
   /*State change variables*/
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
@@ -36,12 +36,14 @@ export const Login = ({setJWT}) => {
   const handleUserPasswordInput = (e) => {
     setPassword(e.target.value);
   };
+  
 
   const handlePost = () => {
     setLoading(true);
+  
     axios
       .post("http://" + API_IP + "/auth", {
-        method: "GET",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         user_details: {
           username: user_name,
@@ -50,7 +52,9 @@ export const Login = ({setJWT}) => {
       })
       .then(function (response) {
         if (response.data != null) {
-          cookies.set("Token", response.data);
+          console.log(response.data.JWT)
+          cookies.set("Token", response.data.JWT);
+          cookies.set("User_id",response.data.user_id)
           setJWT(true);
         } else {
           cookies.set("Token", "Not Authorised");
@@ -116,17 +120,17 @@ export const Login = ({setJWT}) => {
                   </div>
                   {size == "MD" || size == "SM" || size == "XS" ? (
                     <div className="grid grid-rows-2 p-2">
-                      <Button
-                        sx={{ color: buttonColor, mt: 3, mx: "auto" }}
-                        variant="outlined"
-                        onClick={handlePost}
-                        size="small"
-                        fullWidth="true"
-                      >
-                        <Link activeClassName="is-active" to={"/products"}>
+                      <Link activeClassName="is-active" to={"/products"}>
+                        <Button
+                          sx={{ color: buttonColor, mt: 3, mx: "auto" }}
+                          variant="outlined"
+                          onClick={handlePost}
+                          size="small"
+                          fullWidth="true"
+                        >
                           <div clasName="text-md font-bold">Login</div>
-                        </Link>
-                      </Button>
+                        </Button>
+                      </Link>
 
                       <Button
                         sx={{ color: buttonColor, mt: 3, mx: "auto" }}
