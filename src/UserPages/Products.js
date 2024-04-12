@@ -67,22 +67,18 @@ export const Products = () => {
   const handleAdd = () => {
     var NewItem = item;
     var token = cookies.get("Token")
-    var user_id = cookies.get("Token")
-
+    var user_id = cookies.get("User_id")
     NewItem["volume"] = volume;
     NewItem["amount"] = amount;
-  
     delete NewItem.image;
-
     setOpen(!open);
 
     axios
       .post("http://" + API_IP + "/add_to_cart", {
         product_code: NewItem.product_code,
-        volume: NewItem.volume,
         amount: NewItem.amount,
         token: token,
-        user_id: user_id
+        cart_id: user_id
       })
       .then(function (response) {})
       .catch(function (error) {});
