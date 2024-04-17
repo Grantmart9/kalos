@@ -80,7 +80,7 @@ export const Products = () => {
         token: token,
         cart_id: user_id
       })
-      .then(function (response) {})
+      .then((res)=> setData(res.data) + setLoading(false))
       .catch(function (error) {});
   };
   console.log();

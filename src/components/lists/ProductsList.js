@@ -10,7 +10,7 @@ import Product_GX1007 from "images/Product_GX1007.jpg";
 
 export const ProductList = [
   {
-    product_code: "563836HUUDE",
+    product_code: "GX1000",
     title: "ProductList",
     description:"dsadsa",
     brand: "Black opium",
@@ -22,7 +22,7 @@ export const ProductList = [
     ),
   },
   {
-    product_code: "GX10",
+    product_code: "GX1001",
     title: "Fragrances",
     description: " Libre Eau De Parfum Intense",
     brand: "Yves Saint Laurent",

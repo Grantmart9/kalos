@@ -51,24 +51,28 @@ export const Cart = () => {
             style={{ color: pageHeading, marginTop: "15%" }}
             className="text-xl flex align-center justify-center mb-2 p-2 w-full"
           >
-             <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
-              <div>Brand: {data[0].brand}</div>
-              <div>Description: {data[0].product_description}</div>
-              <div>Qty: {data[0].qty}</div>
-              <div>Delivery time: {data[0].delivery_time} days</div>
-            </div>
+            {data.map((item) => (
+              <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
+                <div>Brand: {item.brand}</div>
+                <div>Description: {item.product_description}</div>
+                <div>Qty: {item.qty}</div>
+                <div>Delivery time: {item.delivery_time} days</div>
+              </div>
+            ))}
           </div>
         ) : (
           <div
             style={{ color: pageHeading, marginTop: "1pt" }}
             className="text-xl flex align-center justify-center mb-2 p-2 w-full"
           >
-            <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
-              <div>Brand: {data[0].brand}</div>
-              <div>Description: {data[0].product_description}</div>
-              <div>Qty: {data[0].qty}</div>
-              <div>Delivery time: {data[0].delivery_time} days</div>
-            </div>
+            {data.map((item) => (
+              <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
+                <div>Brand: {item.brand}</div>
+                <div>Description: {item.product_description}</div>
+                <div>Qty: {item.qty}</div>
+                <div>Delivery time: {item.delivery_time} days</div>
+              </div>
+            ))}
           </div>
         )}
       </div>
