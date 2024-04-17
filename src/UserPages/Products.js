@@ -6,6 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import {
   buttonColor,
   layoutColor,
   pageHeading,
@@ -16,6 +23,7 @@ import Loading from "images/Loading.gif";
 import { API_IP } from "components/API/API";
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
+import { Login } from "UserPages/Login";
 const cookies = new Cookies();
 
 export const Products = () => {
@@ -66,8 +74,8 @@ export const Products = () => {
 
   const handleAdd = () => {
     var NewItem = item;
-    var token = cookies.get("Token")
-    var user_id = cookies.get("User_id")
+    var token = cookies.get("Token");
+    var user_id = cookies.get("User_id");
     NewItem["volume"] = volume;
     NewItem["amount"] = amount;
     delete NewItem.image;
@@ -78,12 +86,24 @@ export const Products = () => {
         product_code: NewItem.product_code,
         amount: NewItem.amount,
         token: token,
-        cart_id: user_id
+        cart_id: user_id,
       })
-      .then((res)=> setData(res.data) + setLoading(false))
+      .then((res) => setData(res.data) + setLoading(false))
       .catch(function (error) {});
   };
   console.log();
+
+  if (data == "User not authorised") {
+    return (
+      <Redirect
+        to={{
+          pathname: "/login",
+          search: "?utm=your+face",
+          state: { referrer: 'products' },
+        }}
+      />
+    );
+  }
 
   return (
     <div>

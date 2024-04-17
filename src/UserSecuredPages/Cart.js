@@ -52,7 +52,7 @@ export const Cart = () => {
             className="text-xl flex align-center justify-center mb-2 p-2 w-full"
           >
             {data.map((item) => (
-              <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
+              <div className="grid grid-rows-4 gap-2 mb-4 shadow-md p-3">
                 <div>Brand: {item.brand}</div>
                 <div>Description: {item.product_description}</div>
                 <div>Qty: {item.qty}</div>
@@ -66,7 +66,7 @@ export const Cart = () => {
             className="text-xl flex align-center justify-center mb-2 p-2 w-full"
           >
             {data.map((item) => (
-              <div className="grid grid-rows-3 gap-2 mb-4 shadow-md p-3">
+              <div className="grid grid-rows-4 gap-2 mb-4 shadow-md p-3">
                 <div>Brand: {item.brand}</div>
                 <div>Description: {item.product_description}</div>
                 <div>Qty: {item.qty}</div>
