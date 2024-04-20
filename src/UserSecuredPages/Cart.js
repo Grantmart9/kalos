@@ -15,19 +15,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 const cookies = new Cookies();
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
 
 export const Cart = () => {
   const size = Size();
@@ -46,80 +46,97 @@ export const Cart = () => {
       })
       .then((res) => setData(res.data) + setLoading(false))
       .catch(function (error) {
-        setError(error);
-        console.log(error);
+        setError(true);
         setLoading(false);
       });
   }, []);
 
-  if (error) {
-    <div>error</div>;
-  }
-
-  if (loading) {
-    return <div>loading data...</div>;
-  }
-
-  console.log(data);
-
   return (
     <div>
-      <div>
-        {size == "MD" || size == "SM" || size == "XS" ? (
-          <div
-            style={{ color: pageHeading, marginTop: "15%" }}
-            className="text-xl flex align-center justify-center mb-2 p-2 w-full"
-          >
-            {data.map((item) => (
-              <div className="grid grid-rows-4 gap-2 mb-4 shadow-md p-3">
-                <div>Brand: {item.brand}</div>
-                <div>Description: {item.product_description}</div>
-                <div>Qty: {item.qty}</div>
-                <div>Delivery time: {item.delivery_time} days</div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div
-            style={{ color: pageHeading, marginTop: "1pt" }}
-            className="text-xl flex align-center justify-center mb-2 p-2 w-full"
-          >
-            {data.map((item) => (
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Dessert (100g serving)</TableCell>
-                      <TableCell align="right">Calories</TableCell>
-                      <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                      <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                      <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            ))}
-          </div>
-        )}
-      </div>
+      {error ? (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { referrer: "products" },
+          }}
+        />
+      ) : (
+        <div>
+          {" "}
+          {!loading ? (
+            <div>
+              {size == "MD" || size == "SM" || size == "XS" ? (
+                <div
+                  style={{ color: pageHeading, marginTop: "15%" }}
+                  className="text-xl flex align-center justify-center mb-2 p-2 w-full"
+                >
+                  {data.map((item) => (
+                    <div className="grid grid-rows-4 gap-2 mb-4 shadow-md p-3">
+                      <div>Brand: {item.brand}</div>
+                      <div>Description: {item.product_description}</div>
+                      <div>Qty: {item.qty}</div>
+                      <div>Delivery time: {item.delivery_time} days</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  style={{ color: pageHeading, marginTop: "1pt" }}
+                  className="text-xl flex align-center justify-center mb-2 p-2 w-full"
+                >
+                  <TableContainer component={Paper}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="left">Product</TableCell>
+                          <TableCell align="left">Brand</TableCell>
+                          <TableCell align="left">Quantity</TableCell>
+                          <TableCell align="left">
+                            Delivery time (days)
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {data.map((row) => (
+                          <TableRow
+                            key={row.name}
+                            sx={{
+                              "&:last-child td, &:last-child th": { border: 0 },
+                            }}
+                          >
+                            <TableCell align="left">
+                              {row.product_description}
+                            </TableCell>
+                            <TableCell align="left">{row.brand}</TableCell>
+                            <TableCell align="left">{row.qty}</TableCell>
+                            <TableCell align="left">
+                              {row.delivery_time}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </div>
+              )}
+              <Button
+                size="medium"
+                sx={{
+                  backgroundColor: layoutColor,
+                  color: buttonColor,
+                  height: "50px",
+                  alignSelf: "center",
+                  justifySelf: "center",
+                }}
+              >
+                Checkout
+              </Button>
+            </div>
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
