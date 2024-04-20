@@ -24,7 +24,10 @@ import { API_IP } from "components/API/API";
 import { Size } from "media-query";
 import Cookies from "universal-cookie";
 import { Login } from "UserPages/Login";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 const cookies = new Cookies();
+
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
@@ -33,7 +36,7 @@ export const Products = () => {
   const [error, setError] = useState();
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(1);
   const [volume, setVolume] = useState();
 
   useEffect(() => {
@@ -68,23 +71,17 @@ export const Products = () => {
     setAmount(event.target.value);
   };
 
-  const handleVolume = (event) => {
-    setVolume(event.target.value);
-  };
-
   const handleAdd = () => {
     var NewItem = item;
     var token = cookies.get("Token");
     var user_id = cookies.get("User_id");
-    NewItem["volume"] = volume;
-    NewItem["amount"] = amount;
     delete NewItem.image;
     setOpen(!open);
 
     axios
       .post("http://" + API_IP + "/add_to_cart", {
         product_code: NewItem.product_code,
-        amount: NewItem.amount,
+        amount: amount,
         token: token,
         cart_id: user_id,
       })
@@ -99,7 +96,7 @@ export const Products = () => {
         to={{
           pathname: "/login",
           search: "?utm=your+face",
-          state: { referrer: 'products' },
+          state: { referrer: "products" },
         }}
       />
     );
@@ -141,21 +138,21 @@ export const Products = () => {
             aria-describedby="alert-dialog-slide-description"
           >
             <DialogContent>
-              <div className="flex align-center justify-end">
-                <Button
-                  sx={{ backgroundColor: layoutColor, color: buttonColor }}
-                  onClick={() => setOpen(!open)}
-                >
-                  close
-                </Button>
-              </div>
-              <div>
-                <div className="grid grid-rows-2">
+              <div className="align-center justify-center">
+                <div className="flex align-center justify-end">
+                  <Button
+                    sx={{ backgroundColor: layoutColor, color: buttonColor }}
+                    onClick={() => setOpen(!open)}
+                  >
+                    back
+                  </Button>
+                </div>
+                <div className="grid grid-rows-2 align-center justify-center">
+                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    {item.image}
+                  </div>
                   <div>
-                    <div className="flex mt-20 justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                      {item.image}
-                    </div>
-                    <div className="flex mt-20 justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
                       {item.name}
                     </div>
                     <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
@@ -171,40 +168,34 @@ export const Products = () => {
                 </div>
               </div>
             </DialogContent>
-            <div className="grid grid-rows-2 gap-1">
-              <div className="flex align-center justify-center">
-                <div className="grid grid-rows-2">
-                  <div className="text-xs">Volume</div>
-                  <Select value={amount} onChange={handleVolume}>
-                    <MenuItem value={10}>10ml</MenuItem>
-                    <MenuItem value={30}>30ml</MenuItem>
-                    <MenuItem value={100}>100ml</MenuItem>
-                  </Select>
-                </div>
-                <div className="grid grid-rows-2 ml-2">
-                  <div className="text-xs">Quantity</div>
-                  <Select value={volume} onChange={handleAmount}>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex align-center justify-center mt-2">
-                <Button
-                  onClick={handleAdd}
-                  size="medium"
-                  sx={{
-                    backgroundColor: layoutColor,
-                    color: buttonColor,
-                    height: "50px",
-                  }}
-                >
-                  Add to Cart
-                </Button>
-              </div>
+            <div className="flex align-center justify-center mt-2">
+              <Box sx={{ width: 300 }}>
+                <Slider
+                  sx={{ backgroundColor: "#f0f5f5", color: "white",padding:"2pt" }}
+                  defaultValue={1}
+                  valueLabelDisplay="on"
+                  onChange={handleAmount}
+                  shiftStep={1}
+                  step={1}
+                  marks
+                  min={0}
+                  max={100}
+                  value={amount}
+                />
+              </Box>
+            </div>
+            <div className="flex align-center justify-center mt-2 mb-5">
+              <Button
+                onClick={handleAdd}
+                size="medium"
+                sx={{
+                  backgroundColor: layoutColor,
+                  color: buttonColor,
+                  height: "50px",
+                }}
+              >
+                Add to Cart
+              </Button>
             </div>
           </Dialog>
         </div>
