@@ -25,8 +25,9 @@ import {
 } from "react-router-dom";
 const cookies = new Cookies();
 
-const UserCart = ({ data, setData, setLoading }) => {
+const UserCart = ({ data, setLoading }) => {
   const handleAdd = ({ row }) => {
+    setLoading(false);
     axios
       .post("http://" + API_IP + "/add_to_cart", {
         product_code: row.product_id,
@@ -34,28 +35,30 @@ const UserCart = ({ data, setData, setLoading }) => {
         token: cookies.get("Token"),
         cart_id: cookies.get("User_id"),
       })
-      .then((res) => setData(res.data) + setLoading(false))
+      .then((res) => setLoading(true))
       .catch(function (error) {});
   };
   const handleRemove = ({ row }) => {
+    setLoading(false);
     axios
       .post("http://" + API_IP + "/remove_row_from_cart", {
         product_code: row.product_id,
         token: cookies.get("Token"),
         cart_id: cookies.get("User_id"),
       })
-      .then((res) => setData(res.data) + setLoading(false))
+      .then((res) => setLoading(true))
       .catch(function (error) {});
   };
 
   const handleSub = ({ row }) => {
+    setLoading(false);
     axios
       .post("http://" + API_IP + "/remove_from_cart", {
         product_code: row.product_id,
         token: cookies.get("Token"),
         cart_id: cookies.get("User_id"),
       })
-      .then((res) => setData(res.data) + setLoading(false))
+      .then((res) => setLoading(true))
       .catch(function (error) {});
   };
   return (
@@ -150,18 +153,10 @@ export const Cart = () => {
                   style={{ color: pageHeading, marginTop: "15%" }}
                   className="text-xl flex align-center justify-center mb-2 p-2 w-full"
                 >
-                  <UserCart
-                    setData={setData}
-                    setLoading={setLoading}
-                    data={data}
-                  />
+                  <UserCart setLoading={setLoading} data={data} />
                 </div>
               ) : (
-                <UserCart
-                  setData={setData}
-                  setLoading={setLoading}
-                  data={data}
-                />
+                <UserCart setLoading={setLoading} data={data} />
               )}
               <div className="flex align-center justify-center mt-4">
                 <Button
