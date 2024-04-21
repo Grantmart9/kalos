@@ -37,7 +37,6 @@ export const Products = () => {
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(1);
-  const [volume, setVolume] = useState();
 
   useEffect(() => {
     setLoading(true);

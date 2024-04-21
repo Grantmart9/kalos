@@ -25,7 +25,39 @@ import {
 } from "react-router-dom";
 const cookies = new Cookies();
 
-const UserCart = ({ data, handleAdd, handleSub }) => {
+const UserCart = ({ data, setData, setLoading }) => {
+  const handleAdd = ({ row }) => {
+    axios
+      .post("http://" + API_IP + "/add_to_cart", {
+        product_code: row.product_id,
+        amount: 1,
+        token: cookies.get("Token"),
+        cart_id: cookies.get("User_id"),
+      })
+      .then((res) => setData(res.data) + setLoading(false))
+      .catch(function (error) {});
+  };
+  const handleRemove = ({ row }) => {
+    axios
+      .post("http://" + API_IP + "/remove_row_from_cart", {
+        product_code: row.product_id,
+        token: cookies.get("Token"),
+        cart_id: cookies.get("User_id"),
+      })
+      .then((res) => setData(res.data) + setLoading(false))
+      .catch(function (error) {});
+  };
+
+  const handleSub = ({ row }) => {
+    axios
+      .post("http://" + API_IP + "/remove_from_cart", {
+        product_code: row.product_id,
+        token: cookies.get("Token"),
+        cart_id: cookies.get("User_id"),
+      })
+      .then((res) => setData(res.data) + setLoading(false))
+      .catch(function (error) {});
+  };
   return (
     <div
       style={{ color: pageHeading, marginTop: "1pt" }}
@@ -41,28 +73,37 @@ const UserCart = ({ data, handleAdd, handleSub }) => {
 
               <TableCell align="left">Quantity</TableCell>
               <TableCell align="left">Delivery time (days)</TableCell>
+              <TableCell align="center">Romove</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row) => (
+            {data.map((row, i) => (
               <TableRow
-                key={row.name}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                 }}
+                key={i}
               >
                 <TableCell align="left">{row.product_description}</TableCell>
 
                 <TableCell align="left">
-                  <Button className="ml-2" onClick={handleAdd}>
+                  <Button className="ml-2" onClick={() => handleSub({ row })}>
                     &darr;
                   </Button>
                   {row.qty}
-                  <Button className="mr-2" onClick={handleSub}>
+                  <Button className="mr-2" onClick={() => handleAdd({ row })}>
                     &uarr;
                   </Button>
                 </TableCell>
                 <TableCell align="left">{row.delivery_time}</TableCell>
+                <TableCell align="center">
+                  <Button
+                    size="large"
+                    sx={{ backgroundColor: "#e6fcf4", minHeight:"20pt" }}
+                    className="shadow-md"
+                    onClick={() => handleRemove({ row })}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -77,29 +118,8 @@ export const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState();
-
-  const handleAdd = () => {
-    axios
-      .post("http://" + API_IP + "/add_to_cart", {
-        product_code: "GX1001",
-        amount: 1,
-        token: cookies.get("Token"),
-        cart_id: 2,
-      })
-      .then((res) => setData(res.data) + setLoading(false))
-      .catch(function (error) {});
-  };
-
-  const handleSub = () => {
-    axios
-      .post("http://" + API_IP + "/remove_from_cart", {
-        product_code: "GX1001",
-        token: cookies.get("Token"),
-        cart_id: 2,
-      })
-      .then((res) => setData(res.data) + setLoading(false))
-      .catch(function (error) {});
-  };
+  const [productCode, setProductCode] = useState();
+  const [cartId, setCartId] = useState();
 
   useEffect(() => {
     var token = cookies.get("Token");
@@ -136,16 +156,16 @@ export const Cart = () => {
                   className="text-xl flex align-center justify-center mb-2 p-2 w-full"
                 >
                   <UserCart
+                    setData={setData}
+                    setLoading={setLoading}
                     data={data}
-                    handleSub={handleAdd}
-                    handleAdd={handleSub}
                   />
                 </div>
               ) : (
                 <UserCart
+                  setData={setData}
+                  setLoading={setLoading}
                   data={data}
-                  handleSub={handleAdd}
-                  handleAdd={handleSub}
                 />
               )}
               <div className="flex align-center justify-center mt-4">
