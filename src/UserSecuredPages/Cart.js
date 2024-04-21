@@ -70,10 +70,9 @@ const UserCart = ({ data, setData, setLoading }) => {
               <TableCell sx={{ font: "bold" }} align="left">
                 Product
               </TableCell>
-
               <TableCell align="left">Quantity</TableCell>
               <TableCell align="left">Delivery time (days)</TableCell>
-              <TableCell align="center">Romove</TableCell>
+              <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -85,7 +84,6 @@ const UserCart = ({ data, setData, setLoading }) => {
                 key={i}
               >
                 <TableCell align="left">{row.product_description}</TableCell>
-
                 <TableCell align="left">
                   <Button className="ml-2" onClick={() => handleSub({ row })}>
                     &darr;
@@ -99,10 +97,12 @@ const UserCart = ({ data, setData, setLoading }) => {
                 <TableCell align="center">
                   <Button
                     size="large"
-                    sx={{ backgroundColor: "#e6fcf4", minHeight:"20pt" }}
+                    sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
                     className="shadow-md"
                     onClick={() => handleRemove({ row })}
-                  />
+                  >
+                    Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -118,17 +118,12 @@ export const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState();
-  const [productCode, setProductCode] = useState();
-  const [cartId, setCartId] = useState();
 
   useEffect(() => {
-    var token = cookies.get("Token");
-    var user_id = cookies.get("User_id");
-    console.log("fetching data");
     axios
       .post("http://" + API_IP + "/get_cart", {
-        token: token,
-        cart_id: user_id,
+        token: cookies.get("Token"),
+        cart_id: cookies.get("User_id"),
       })
       .then((res) => setData(res.data) + setLoading(false))
       .catch(function (error) {
