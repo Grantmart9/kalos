@@ -99,7 +99,7 @@ const UserCart = ({ data, setLoading }) => {
                 <TableCell align="left">{row.delivery_time}</TableCell>
                 <TableCell align="center">
                   <Button
-                    size="large"
+                    size="small"
                     sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
                     className="shadow-md"
                     onClick={() => handleRemove({ row })}
@@ -161,13 +161,10 @@ export const Cart = () => {
               <div className="flex align-center justify-center mt-4">
                 <Button
                   size="medium"
-                  sx={{
-                    backgroundColor: layoutColor,
-                    color: buttonColor,
-                    height: "50px",
-                  }}
+                  sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
+                  className="shadow-md"
                 >
-                  Checkout
+                  Checkout 	&rArr;
                 </Button>
               </div>
             </div>

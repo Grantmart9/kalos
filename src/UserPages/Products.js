@@ -171,10 +171,9 @@ export const Products = () => {
               <Box sx={{ width: 300 }}>
                 <Slider
                   sx={{ backgroundColor: "#f0f5f5", color: "white",padding:"2pt" }}
-                  defaultValue={1}
+                  defaultValue={0}
                   valueLabelDisplay="on"
                   onChange={handleAmount}
-                  shiftStep={1}
                   step={1}
                   marks
                   min={0}
