@@ -33,7 +33,6 @@ const RegisteredMenuItems = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
   { name: "Orders", path: "/orders" },
-  { name: "My Cart", path: "/cart" },
   { name: "settings", path: "/settings" },
 ];
 

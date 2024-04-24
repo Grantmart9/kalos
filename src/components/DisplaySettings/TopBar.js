@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   buttonColor,
@@ -12,7 +12,6 @@ import {
   pageHeading,
   fontType,
 } from "components/DisplaySettings/feutures";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const LoggedOut = ({ handleBurger, handleLogin }) => {
   return (
@@ -82,12 +81,12 @@ const LoggedIn = ({ handleBurger, handleLogin }) => {
           </Link>
         </Button>
         <Button onClick={handleLogin} sx={{ mr: 1, color: buttonColor }}>
-          <Link to={"/settings"}>
+          <Link to={"/cart"}>
             <div
               style={{ fontFamily: fontType }}
               className="font-serif text-gray-500 "
             >
-              <AccountCircle />
+              <ShoppingBasketIcon />
             </div>
           </Link>
         </Button>

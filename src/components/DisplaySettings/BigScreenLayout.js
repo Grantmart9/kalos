@@ -10,16 +10,13 @@ import { Login } from "UserPages/Login";
 import { Register } from "UserPages/Register";
 import { Settings } from "UserSecuredPages/Settings";
 import { Orders } from "UserSecuredPages/Orders";
-import Loading from "images/Loading.gif";
 import {
   buttonColor,
   layoutColor,
   fontType,
 } from "components/DisplaySettings/feutures";
 import { TopBar } from "components/DisplaySettings/TopBar";
-
 import Cookies from "universal-cookie";
-
 const cookies = new Cookies();
 
 /*This needs to be */
@@ -30,7 +27,6 @@ const menuItems = [
 ];
 const RegisteredMenuItems = [
   { name: "Products", path: "/products" },
-  { name: "My Cart", path: "/cart" },
   { name: "Orders", path: "/orders" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
