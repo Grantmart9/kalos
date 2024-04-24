@@ -3,8 +3,6 @@ import { ProductList } from "components/lists/ProductsList";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import {
   BrowserRouter as Router,
   Route,

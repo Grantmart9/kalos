@@ -30,20 +30,18 @@ const menuItems = [
 ];
 const RegisteredMenuItems = [
   { name: "Products", path: "/products" },
+  { name: "My Cart", path: "/cart" },
+  { name: "Orders", path: "/orders" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
-  { name: "Orders", path: "/orders" },
-  { name: "My Cart", path: "/cart" },
   { name: "settings", path: "/settings" },
 ];
 
 const SideNavInner = ({ handleClick, jwt }) => {
   var Menu;
-  console.log(jwt);
   if (jwt) {
     Menu = RegisteredMenuItems;
-  }
-   else {
+  } else {
     Menu = menuItems;
   }
   return (
@@ -128,7 +126,7 @@ export const BigScreenLayout = ({
 }) => {
   var JWT_State = false;
   var jwt_avail = cookies.get("Token");
-  if (jwt_avail != '') {
+  if (jwt_avail != "") {
     JWT_State = true;
   } else {
     JWT_State = false;
@@ -141,6 +139,7 @@ export const BigScreenLayout = ({
         handleCart={handleCart}
         handleLogin={handleLogin}
         handleBurger={handleBurger}
+        jwt_avail ={JWT_State}
       />
       <div className="flex" style={{ marginTop: "5rem" }}>
         {open ? <SideNavBig handleClick={handleClick} jwt={jwt} /> : null}

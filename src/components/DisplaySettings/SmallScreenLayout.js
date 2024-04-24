@@ -39,7 +39,6 @@ const RegisteredMenuItems = [
 
 const SideNavInner = ({ handleClick, jwt }) => {
   var Menu;
-  console.log(jwt);
   if (jwt) {
     Menu = RegisteredMenuItems;
   } else {
@@ -139,6 +138,7 @@ export const SmallScreenLayout = ({
         handleCart={handleCart}
         handleLogin={handleLogin}
         handleBurger={handleBurger}
+        jwt_avail ={JWT_State}
       />
       {open ? (
         <div style={{ marginTop: "5rem" }}>
