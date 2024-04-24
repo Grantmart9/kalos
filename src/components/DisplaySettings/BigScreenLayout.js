@@ -118,6 +118,7 @@ export const BigScreenLayout = ({
   handleLogin,
   handleBurger,
   handleClick,
+  handleLogout,
   open,
 }) => {
   var JWT_State = false;
@@ -135,6 +136,7 @@ export const BigScreenLayout = ({
         handleCart={handleCart}
         handleLogin={handleLogin}
         handleBurger={handleBurger}
+        handleLogout={handleLogout}
         jwt_avail ={JWT_State}
         setJWT={setJWT}
        

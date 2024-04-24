@@ -8,7 +8,7 @@ import { API_IP } from "components/API/API";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-export const Home = () => {
+export const Home = ({handleLogout}) => {
   const [open, setOpen] = useState(true);
   const ScreenSize = Size();
 
@@ -36,6 +36,7 @@ export const Home = () => {
           handleLogin={handleLogin}
           handleBurger={handleBurger}
           handleClick={handleClickSmall}
+          handleLogout={handleLogout}
           open={open}
         />
       ) : (
@@ -44,6 +45,7 @@ export const Home = () => {
           handleLogin={handleLogin}
           handleBurger={handleBurger}
           handleClick={handleClickLarge}
+          handleLogout={handleLogout}
           open={open}
         />
       )}

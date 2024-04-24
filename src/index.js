@@ -25,12 +25,17 @@ const cookies = new Cookies();
 
 const theme = createTheme({});
 window.theme = theme;
-cookies.set('Token', '', { path: '/' })
-cookies.set('User_id', '', { path: '/' })
+cookies.set("Token", "", { path: "/" });
+cookies.set("User_id", "", { path: "/" });
+
+const handleLogout = () => {
+  cookies.set("Token", "", { path: "/" });
+  cookies.set("User_id", "", { path: "/" });
+};
 ReactDOM.render(
-  <ThemeProvider >
+  <ThemeProvider>
     <BrowserRouter>
-      <Home />
+      <Home handleLogout={handleLogout} />
     </BrowserRouter>
   </ThemeProvider>,
   document.getElementById("root")

@@ -26,6 +26,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 const cookies = new Cookies();
 
+
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
   const [item, setItem] = useState([]);
@@ -133,16 +134,16 @@ export const Products = () => {
             keepMounted
             aria-describedby="alert-dialog-slide-description"
           >
-            <DialogContent>
-              <div className="flex align-center justify-end">
-                <Button
-                  sx={{ backgroundColor: layoutColor, color: buttonColor }}
-                  onClick={() => setOpen(!open)}
-                >
-                  back
-                </Button>
-              </div>
-              <div className="flex align-center justify-center">
+            <DialogContent >
+              
+                <div className="flex align-center justify-end">
+                  <Button
+                    sx={{ backgroundColor: layoutColor, color: buttonColor }}
+                    onClick={() => setOpen(!open)}
+                  >
+                    back
+                  </Button>
+                </div>
                 <div className="grid grid-rows-2 align-center justify-center">
                   <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
                     {item.image}
@@ -162,16 +163,12 @@ export const Products = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+       
             </DialogContent>
             <div className="flex align-center justify-center mt-2">
               <Box sx={{ width: 300 }}>
                 <Slider
-                  sx={{
-                    backgroundColor: "#f0f5f5",
-                    color: "white",
-                    padding: "2pt",
-                  }}
+                  sx={{ backgroundColor: "#f0f5f5", color: "white",padding:"2pt" }}
                   defaultValue={0}
                   valueLabelDisplay="on"
                   onChange={handleAmount}

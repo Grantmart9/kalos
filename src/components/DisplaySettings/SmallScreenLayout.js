@@ -121,6 +121,7 @@ export const SmallScreenLayout = ({
   handleLogin,
   handleBurger,
   handleClick,
+  handleLogout,
   open,
 }) => {
   var JWT_State = false;
@@ -138,6 +139,7 @@ export const SmallScreenLayout = ({
         handleLogin={handleLogin}
         handleBurger={handleBurger}
         jwt_avail ={JWT_State}
+        handleLogout = {handleLogout}
       />
       {open ? (
         <div style={{ marginTop: "5rem" }}>

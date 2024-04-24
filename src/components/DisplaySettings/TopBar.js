@@ -49,7 +49,8 @@ const LoggedOut = ({ handleBurger, handleLogin }) => {
   );
 };
 
-const LoggedIn = ({ handleBurger, handleLogin }) => {
+const LoggedIn = ({ handleBurger, handleLogin,handleLogout }) => {
+
   return (
     <AppBar position="fixed" sx={{ backgroundColor: layoutColor }}>
       <Toolbar>
@@ -70,7 +71,7 @@ const LoggedIn = ({ handleBurger, handleLogin }) => {
         >
           <div className="flex text-md align-center justify-center">καλός</div>
         </Typography>
-        <Button sx={{ mr: 1, color: buttonColor }}>
+        <Button onClick={handleLogout} sx={{ mr: 1, color: buttonColor }}>
           <Link to={"/login"}>
             <div
               style={{ fontFamily: fontType }}
@@ -99,11 +100,12 @@ export const TopBar = ({
   handleBurger,
   handleLogin,
   jwt_avail,
+  handleLogout,
 }) => {
   return (
     <>
       {jwt_avail ? (
-        <LoggedIn handleBurger={handleBurger} handleLogin={handleLogin}  />
+        <LoggedIn handleBurger={handleBurger} handleLogin={handleLogin} handleLogout={handleLogout}  />
       ) : (
         <LoggedOut handleBurger={handleBurger} handleLogin={handleLogin}  />
       )}
