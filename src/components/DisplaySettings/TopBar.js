@@ -80,7 +80,7 @@ const LoggedIn = ({ handleBurger, handleLogin }) => {
             </div>
           </Link>
         </Button>
-        <Button onClick={handleLogin} sx={{ mr: 1, color: buttonColor }}>
+        <Button sx={{ mr: 1, color: buttonColor }}>
           <Link to={"/cart"}>
             <div
               style={{ fontFamily: fontType }}
