@@ -10,6 +10,7 @@ import { Login } from "UserPages/Login";
 import { Register } from "UserPages/Register";
 import { Settings } from "UserSecuredPages/Settings";
 import { Orders } from "UserSecuredPages/Orders";
+import Grow from "@mui/material/Grow";
 import {
   buttonColor,
   layoutColor,
@@ -30,7 +31,7 @@ const RegisteredMenuItems = [
   { name: "Orders", path: "/orders" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
-  { name: "settings", path: "/settings" },
+  { name: "Logout", path: "/login" },
 ];
 
 const SideNavInner = ({ handleClick, jwt }) => {
@@ -43,17 +44,21 @@ const SideNavInner = ({ handleClick, jwt }) => {
   return (
     <div className="grid grid-rows-4 gap-2 p-2 mt-5">
       {Menu.map((item) => (
-        <Button
-          onClick={handleClick}
-          size="large"
-          sx={{
-            color: buttonColor,
-          }}
-        >
-          <Link to={item.path}>
-            <div clasName="text-md font-bold">{item.name}</div>
-          </Link>
-        </Button>
+        <div className="flex align-center align-center">
+          <Grow in={true} timeout={800}>
+            <Link to={item.path}>
+              <Button
+                onClick={handleClick}
+                size="medium"
+                sx={{
+                  color: buttonColor,
+                }}
+              >
+                <div clasName="text-md font-bold">{item.name}</div>
+              </Button>
+            </Link>
+          </Grow>
+        </div>
       ))}
     </div>
   );
@@ -78,7 +83,7 @@ const ScreenLayoutInner = ({ setJWT }) => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-      className="rounded shadow-md h-screen w-screen p-2 mt-1 ml-1"
+      className="rounded shadow-md min-h-screen w-screen p-2 mt-1 ml-1"
     >
       <Switch>
         <Route path="/about">
@@ -99,9 +104,6 @@ const ScreenLayoutInner = ({ setJWT }) => {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
         <Route path="/orders">
           <Orders />
         </Route>
@@ -118,7 +120,6 @@ export const BigScreenLayout = ({
   handleLogin,
   handleBurger,
   handleClick,
-  handleLogout,
   open,
 }) => {
   var JWT_State = false;
@@ -130,6 +131,12 @@ export const BigScreenLayout = ({
   }
   const [jwt, setJWT] = useState(JWT_State);
 
+  const handleLogout = () => {
+    cookies.set("Token", "", { path: "/" });
+    cookies.set("User_id", "", { path: "/" });
+    BigScreenLayout();
+  };
+
   return (
     <div>
       <TopBar
@@ -137,11 +144,10 @@ export const BigScreenLayout = ({
         handleLogin={handleLogin}
         handleBurger={handleBurger}
         handleLogout={handleLogout}
-        jwt_avail ={JWT_State}
+        jwt_avail={JWT_State}
         setJWT={setJWT}
-       
       />
-      <div className="flex" style={{ marginTop: "5rem" }}>
+      <div className="flex min-h-screen" style={{ marginTop: "5rem" }}>
         {open ? <SideNavBig handleClick={handleClick} jwt={jwt} /> : null}
         <ScreenLayoutInner setJWT={setJWT} />
       </div>

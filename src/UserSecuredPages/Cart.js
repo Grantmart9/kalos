@@ -16,11 +16,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Grow from "@mui/material/Grow";
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
   Redirect,
 } from "react-router-dom";
 const cookies = new Cookies();
@@ -61,58 +59,61 @@ const UserCart = ({ data, setLoading }) => {
       .then((res) => setLoading(true))
       .catch(function (error) {});
   };
+
   return (
-    <div
-      style={{ color: pageHeading, marginTop: "1pt" }}
-      className="text-xl flex align-center justify-center mb-2 p-2 w-full"
-    >
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ font: "bold" }} align="left">
-                Product
-              </TableCell>
-              <TableCell align="left">Quantity</TableCell>
-              <TableCell align="left">Delivery time (days)</TableCell>
-              <TableCell align="center"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, i) => (
-              <TableRow
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                }}
-                key={i}
-              >
-                <TableCell align="left">{row.product_description}</TableCell>
-                <TableCell align="left">
-                  <Button className="ml-2" onClick={() => handleSub({ row })}>
-                    &darr;
-                  </Button>
-                  {row.qty}
-                  <Button className="mr-2" onClick={() => handleAdd({ row })}>
-                    &uarr;
-                  </Button>
+    <Grow in={data} timeout={800}>
+      <div
+        style={{ color: pageHeading, marginTop: "1pt" }}
+        className="text-xl flex align-center justify-center mb-2 p-2 w-full"
+      >
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ font: "bold" }} align="left">
+                  Product
                 </TableCell>
-                <TableCell align="left">{row.delivery_time}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    size="small"
-                    sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
-                    className="shadow-md"
-                    onClick={() => handleRemove({ row })}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
+                <TableCell align="left">Quantity</TableCell>
+                <TableCell align="left">Delivery time (days)</TableCell>
+                <TableCell align="center"></TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+            </TableHead>
+            <TableBody>
+              {data.map((row, i) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                  key={i}
+                >
+                  <TableCell align="left">{row.product_description}</TableCell>
+                  <TableCell align="left">
+                    <Button className="ml-2" onClick={() => handleSub({ row })}>
+                      &darr;
+                    </Button>
+                    {row.qty}
+                    <Button className="mr-2" onClick={() => handleAdd({ row })}>
+                      &uarr;
+                    </Button>
+                  </TableCell>
+                  <TableCell align="left">{row.delivery_time}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      size="small"
+                      sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
+                      className="shadow-md"
+                      onClick={() => handleRemove({ row })}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </Grow>
   );
 };
 
@@ -164,7 +165,7 @@ export const Cart = () => {
                   sx={{ backgroundColor: "#e6fcf4", minHeight: "20pt" }}
                   className="shadow-md"
                 >
-                  Checkout 	&rArr;
+                  Checkout &rArr;
                 </Button>
               </div>
             </div>

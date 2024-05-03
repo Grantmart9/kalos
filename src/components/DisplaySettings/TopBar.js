@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   buttonColor,
   layoutColor,
@@ -71,13 +72,13 @@ const LoggedIn = ({ handleBurger, handleLogin,handleLogout }) => {
         >
           <div className="flex text-md align-center justify-center">καλός</div>
         </Typography>
-        <Button onClick={handleLogout} sx={{ mr: 1, color: buttonColor }}>
-          <Link to={"/login"}>
+        <Button sx={{ mr: 1, color: buttonColor }}>
+          <Link to={"/settings"}>
             <div
               style={{ fontFamily: fontType }}
               className="font-serif text-gray-500 "
             >
-              Logout
+              <AccountCircleIcon/>
             </div>
           </Link>
         </Button>

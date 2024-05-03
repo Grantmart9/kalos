@@ -33,7 +33,7 @@ const RegisteredMenuItems = [
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
   { name: "Orders", path: "/orders" },
-  { name: "settings", path: "/settings" },
+  { name: "Logout", path: "/login" },
 ];
 
 const SideNavInner = ({ handleClick, jwt }) => {
@@ -81,7 +81,7 @@ const ScreenLayoutInner = ({ setJWT }) => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-      className="rounded shadow-md h-screen w-screen p-2 mt-1 ml-1"
+      className="flex rounded shadow-md min-h-screen w-screen p-2 mt-1 ml-1"
     >
       <Switch>
         <Route path="/about">
@@ -102,9 +102,6 @@ const ScreenLayoutInner = ({ setJWT }) => {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
         <Route path="/orders">
           <Orders />
         </Route>
@@ -121,7 +118,6 @@ export const SmallScreenLayout = ({
   handleLogin,
   handleBurger,
   handleClick,
-  handleLogout,
   open,
 }) => {
   var JWT_State = false;
@@ -131,18 +127,27 @@ export const SmallScreenLayout = ({
   } else {
     JWT_State = false;
   }
+
   const [jwt, setJWT] = useState(JWT_State);
+
+  const handleLogout = () => {
+    cookies.set("Token", "", { path: "/" });
+    cookies.set("User_id", "", { path: "/" });
+    SmallScreenLayout();
+  };
+
   return (
     <div>
       <TopBar
         handleCart={handleCart}
         handleLogin={handleLogin}
         handleBurger={handleBurger}
-        jwt_avail ={JWT_State}
-        handleLogout = {handleLogout}
+        handleLogout={handleLogout}
+        jwt_avail={JWT_State}
+        setJWT={setJWT}
       />
       {open ? (
-        <div style={{ marginTop: "5rem" }}>
+        <div className="flex min-h-screen" style={{ marginTop: "5rem" }}>
           <SideNavSmall handleClick={handleClick} jwt={jwt} />
         </div>
       ) : (

@@ -3,6 +3,7 @@ import { ProductList } from "components/lists/ProductsList";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+import Grow from "@mui/material/Grow";
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +27,364 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 const cookies = new Cookies();
 
+const ProductData = {
+  product_details: [
+    { name: "strain", data: ["Sativa", "Indica", "Mixed"] },
+    { name: "grow", data: ["Indoor", "OutDoor", "Hydro"] },
+    { name: "smoke", data: ["Anxiety", "focus", "Energy", "Relax"] },
+    { name: "taste", data: ["fruity", "citrus", "spicey"] },
+  ],
+  products: [
+    {
+      product_name: "Exodus Cheese",
+      product_id: "EX23452",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Sativa",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Green Crack",
+      product_id: "EX23453",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Sativa",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Purple haze",
+      product_id: "EX23454",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Brown haze",
+      product_id: "EX23455",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+    {
+      product_name: "Cool haze",
+      product_id: "EX23456",
+      product_header: "Good for focus,Axiety,energy",
+      product_description: "Grown by This guy",
+      qty_in_stock: 12,
+      delivery_time: 1,
+      product_cost: 120,
+      product_type: "Indica",
+      smoke: ["Anxiety", "focus"],
+      grow: "Indoor",
+    },
+  ],
+};
 
 export const Products = () => {
   const [menu, setMenu] = useState(ProductList);
@@ -35,6 +394,8 @@ export const Products = () => {
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(1);
+  const [filter, setFilter] = useState(false);
+  const [filterSelector, setFilterSelector] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -46,7 +407,6 @@ export const Products = () => {
         setLoading(false);
       })
       .catch(function (error) {
-        setError("Request Error !!!");
         setLoading(false);
         setError(error.message);
       });
@@ -54,13 +414,17 @@ export const Products = () => {
 
   const handleClick = ({ product }) => {
     setItem({
-      product_code: product.product_code,
-      description: product.description,
-      brand: product.brand,
-      price: product.price,
-      image: product.image,
+      product_name: product.product_name,
+      product_id: product.product_id,
+      product_header: product.product_header,
+      product_description: product.product_description,
+      qty_in_stock: product.qty_in_stock,
+      delivery_time: product.delivery_time,
+      product_cost: product.product_cost,
+      product_type: product.product_type,
+      smoke: product.smoke,
+      grow: product.grow,
     });
-
     setOpen(!open);
   };
 
@@ -72,7 +436,6 @@ export const Products = () => {
     var NewItem = item;
     var token = cookies.get("Token");
     var user_id = cookies.get("User_id");
-    delete NewItem.image;
     setOpen(!open);
 
     axios
@@ -85,7 +448,26 @@ export const Products = () => {
       .then((res) => setData(res.data) + setLoading(false))
       .catch(function (error) {});
   };
-  console.log();
+
+  const handleFilter = () => {
+    setFilter(!filter);
+  };
+
+  const handleFilterSelector = ({ catagory, cat }) => {
+    const names = catagory.name;
+    setFilterSelector({ catagory: names, selection: cat });
+  };
+
+  const applyFilter = () => {
+    var user_id = cookies.get("User_id");
+    axios
+      .post("http://" + API_IP + "/apply_filter", {
+        filterSelector,
+        user_id,
+      })
+      .then((res) => setData(res.data) + setLoading(false))
+      .catch(function (error) {});
+  };
 
   if (data == "User not authorised") {
     return (
@@ -103,28 +485,78 @@ export const Products = () => {
     <div>
       {!loading ? (
         <div>
-          <div className="grid grid-cols-3 gap-2 mb-4 shadow-md">
-            <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
-              <div style={{ fontFamily: fontType }}>fragrances</div>
-            </Button>
-            <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
-              <div style={{ fontFamily: fontType }}>skincare</div>
-            </Button>
-            <Button sx={{ backgroundColor: layoutColor, color: buttonColor }}>
-              <div style={{ fontFamily: fontType }}>makeup</div>
-            </Button>
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-            {menu.map((product, i) => (
+          <Grow in={true} timeout={1200}>
+            <div className="flex align-center justify-center">
+              <div className="bg-white inline-block w-full shadow-md p-1">
+                <div className="flex align-center justify-center">
+                  <Button
+                    fullWidth={true}
+                    sx={{
+                      backgroundColor: "#ebf7f7",
+                      color: buttonColor,
+                      maxWidth: "100pt",
+                    }}
+                    onClick={handleFilter}
+                  >
+                    <div style={{ fontFamily: fontType }}>Filter</div>
+                  </Button>
+                </div>
+                {filter ? (
+                  <div className="mt-1">
+                    {ProductData.product_details.map((catagory, e) => (
+                      <div className="flex align-center justify-center" key={e}>
+                        {catagory.data.map((cat, d) => (
+                          <div>
+                            <div className="inline" key={d}>
+                              <Button
+                                onClick={() =>
+                                  handleFilterSelector({ catagory, cat })
+                                }
+                                sx={{
+                                  backgroundColor: layoutColor,
+                                  color: buttonColor,
+                                }}
+                              >
+                                <div style={{ fontFamily: fontType }}>
+                                  {cat}
+                                </div>
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                    <div className="flex align-center justify-center mt-1">
+                      <Button
+                        fullWidth={true}
+                        sx={{
+                          backgroundColor: "#ebf7f7",
+                          color: buttonColor,
+                          maxWidth: "100pt",
+                        }}
+                        onClick={applyFilter}
+                      >
+                        <div style={{ fontFamily: fontType }}>Apply Filter</div>
+                      </Button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </Grow>
+          <div className="grid grid-cols-4 gap-2 h-screen">
+            {ProductData.products.map((product, i) => (
               <div key={i} className="p-2">
                 <div className="flex align-center justify-center">
                   <Button onClick={() => handleClick({ product })}>
-                    <div style={{ maxWidth: " 28ch" }}>{product.image}</div>
+                    <div style={{ maxWidth: " 28ch" }}>
+                      {product.product_name}
+                    </div>
                   </Button>
                 </div>
-                <div className="text-center mt-1">{product.description}</div>
-                <div className="text-center">{product.brand}</div>
-                <div className="text-center">{product.price}</div>
+                <div className="text-center mt-1">{product.product_header}</div>
+                <div className="text-center">{product.product_description}</div>
+                <div className="text-center">{product.product_cost}</div>
               </div>
             ))}
           </div>
@@ -134,41 +566,43 @@ export const Products = () => {
             keepMounted
             aria-describedby="alert-dialog-slide-description"
           >
-            <DialogContent >
-              
-                <div className="flex align-center justify-end">
-                  <Button
-                    sx={{ backgroundColor: layoutColor, color: buttonColor }}
-                    onClick={() => setOpen(!open)}
-                  >
-                    back
-                  </Button>
+            <DialogContent>
+              <div className="flex align-center justify-end">
+                <Button
+                  sx={{ backgroundColor: layoutColor, color: buttonColor }}
+                  onClick={() => setOpen(!open)}
+                >
+                  back
+                </Button>
+              </div>
+              <div className="grid grid-rows-2 align-center justify-center">
+                <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                  {item.product_name}
                 </div>
-                <div className="grid grid-rows-2 align-center justify-center">
+                <div>
                   <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                    {item.image}
+                    {item.product_header}
                   </div>
-                  <div>
-                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                      {item.name}
-                    </div>
-                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                      {item.description}
-                    </div>
-                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                      {item.brand}
-                    </div>
-                    <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
-                      {item.price}
-                    </div>
+                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    {item.product_descriptiondescription}
+                  </div>
+                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    {item.product_cost}
+                  </div>
+                  <div className="flex justify-center align-middle transition ease-in duration-3000 mx-auto my-auto">
+                    {item.delivery_time}
                   </div>
                 </div>
-       
+              </div>
             </DialogContent>
             <div className="flex align-center justify-center mt-2">
               <Box sx={{ width: 300 }}>
                 <Slider
-                  sx={{ backgroundColor: "#f0f5f5", color: "white",padding:"2pt" }}
+                  sx={{
+                    backgroundColor: "#f0f5f5",
+                    color: "white",
+                    padding: "2pt",
+                  }}
                   defaultValue={0}
                   valueLabelDisplay="on"
                   onChange={handleAmount}

@@ -36,11 +36,9 @@ export const Login = ({ setJWT }) => {
   const handleUserPasswordInput = (e) => {
     setPassword(e.target.value);
   };
-  
 
   const handlePost = () => {
     setLoading(true);
-  
     axios
       .post("http://" + API_IP + "/auth", {
         method: "POST",
@@ -72,6 +70,7 @@ export const Login = ({ setJWT }) => {
   if (error) {
     <div>{error}</div>;
   }
+
   return (
     <div>
       {loading ? (
